@@ -42,6 +42,7 @@
     "@jannajs/lint": "^2.3.9",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^8.10.0",
+    "husky": "^8.0.3",
     "lint-staged": "^13.3.0",
     "postcss-antd-fixes": "^0.1.0",
     "prettier": "^3.0.3",

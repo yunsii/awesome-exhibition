@@ -85,6 +85,9 @@ devDependencies:
   eslint-config-prettier:
     specifier: ^8.10.0
     version: 8.10.0(eslint@8.49.0)
+  husky:
+    specifier: ^8.0.3
+    version: 8.0.3
   lint-staged:
     specifier: ^13.3.0
     version: 13.3.0
@@ -3404,6 +3407,12 @@ packages:
   /husky@7.0.4:
     resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
     engines: {node: '>=12'}
+    hasBin: true
+    dev: true
+
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
