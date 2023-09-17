@@ -29,9 +29,6 @@ dependencies:
   eslint-config-next:
     specifier: 13.4.19
     version: 13.4.19(eslint@8.49.0)(typescript@5.2.2)
-  fasttext.wasm:
-    specifier: ^1.0.1
-    version: 1.0.1
   fasttext.wasm.js:
     specifier: 0.0.1-next.0
     version: 0.0.1-next.0
@@ -3035,11 +3032,6 @@ packages:
 
   /fasttext.wasm.js@0.0.1-next.0:
     resolution: {integrity: sha512-WqQPPwAunyHyLhYZnVLDX6GoamQJSycbpWit4VrmA8jBJhYzTEISAubrHZ0nEWRTWV8cX847H4dpS03GE2lptw==}
-    dev: false
-
-  /fasttext.wasm@1.0.1:
-    resolution: {integrity: sha512-9a3ton6jy+y4sqJOahv62gMploUVDh8H+BlG1HkRyHHLGLLKHjIQNoi6JnUxMH1mi6cj3LToT9Tl56ajkJ9xnQ==}
-    engines: {node: '>=14.15.0'}
     dev: false
 
   /fd-slicer@1.1.0:

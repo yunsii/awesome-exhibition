@@ -22,7 +22,6 @@
     "antd": "^5.9.1",
     "autoprefixer": "10.4.15",
     "eslint-config-next": "13.4.19",
-    "fasttext.wasm": "^1.0.1",
     "fasttext.wasm.js": "0.0.1-next.0",
     "next": "13.4.19",
     "postcss": "8.4.29",
