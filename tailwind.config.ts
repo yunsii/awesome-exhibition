@@ -1,3 +1,5 @@
+import { addDynamicIconSelectors } from 'tailwindcss-plugin-iconify'
+
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -15,6 +17,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    addDynamicIconSelectors({
+      prefix: 'i',
+      preprocessSets: ['mdi'],
+    }),
+  ],
 }
+
 export default config

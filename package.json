@@ -6,20 +6,53 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx .",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "lint-staged:lint": "eslint",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "prettier": "prettier --check --write --no-plugin-search \"**/*.(js|jsx|tsx|ts|css|less|scss|sass|md|yaml)\""
   },
   "dependencies": {
+    "@ant-design/cssinjs": "^1.17.0",
     "@types/node": "20.6.1",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "ahooks": "^3.7.8",
+    "antd": "^5.9.1",
     "autoprefixer": "10.4.15",
-    "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "fasttext.wasm": "^1.0.1",
+    "fasttext.wasm.js": "0.0.1-next.0",
     "next": "13.4.19",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tagged-classnames-free": "0.1.0-next.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.35.3",
+    "@antfu/eslint-config-react": "^0.35.3",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/types": "^17.4.4",
+    "@iconify-json/mdi": "^1.1.54",
+    "@jannajs/lint": "^2.3.9",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^8.10.0",
+    "lint-staged": "^13.3.0",
+    "postcss-antd-fixes": "^0.1.0",
+    "prettier": "^3.0.3",
+    "sass": "^1.67.0",
+    "tailwindcss-plugin-iconify": "^0.1.4",
+    "unplugin-polish-tagged-templates": "0.1.1-beta.2"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:lint",
+    "**/*.{js,jsx,tsx,ts,css,less,scss,sass,md,yaml}": [
+      "prettier --write --no-plugin-search"
+    ]
   }
 }
