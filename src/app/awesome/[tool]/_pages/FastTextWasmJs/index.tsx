@@ -9,6 +9,7 @@ import {
 import { useDebounceFn, useMount } from 'ahooks'
 
 import { useToolName } from '@/hooks/tools'
+import ToolTitle from '@/app/_components/ToolTitle'
 
 interface Values {
   input: string
@@ -47,15 +48,10 @@ const FastTextWasmJs: React.FC = () => {
 
   return (
     <div className={`p-4`}>
-      <h2 className={`mb-2 flex items-center gap-2`}>
-        <span>{toolName}</span>
-        <a
-          className={`i-mdi--github text-black hover:text-black transform hover:scale-110`}
-          href='https://github.com/yunsii/fasttext.wasm.js'
-          target='_blank'
-          rel='noreferrer'
-        />
-      </h2>
+      <ToolTitle
+        name={toolName}
+        githubHref='https://github.com/yunsii/fasttext.wasm.js'
+      />
 
       <Form<Values>
         initialValues={initialValues}

@@ -4,6 +4,9 @@ import { Button, Input } from 'antd'
 import { useState } from 'react'
 import { Matrix, inverse } from 'ml-matrix'
 
+import ToolTitle from '@/app/_components/ToolTitle'
+import { useToolName } from '@/hooks/tools'
+
 function dump(matrix: number[][]) {
   return matrix
     .map((item) => {
@@ -18,6 +21,7 @@ function load(matrix: string) {
 }
 
 const MlMatrix: React.FC = () => {
+  const toolName = useToolName()
   const [matrixStr, setMatrixStr] = useState(
     dump([
       [1, 0.8, 0],
@@ -29,6 +33,7 @@ const MlMatrix: React.FC = () => {
 
   return (
     <div className='px-4 pt-4'>
+      <ToolTitle name={toolName} githubHref='https://github.com/mljs/matrix' />
       <div className='flex gap-4'>
         <Input.TextArea
           className='flex-1'

@@ -4,10 +4,14 @@ import { Input } from 'antd'
 import { useAsyncEffect, useDebounceEffect, useUnmount } from 'ahooks'
 import { useState } from 'react'
 
+import ToolTitle from '@/app/_components/ToolTitle'
+import { useToolName } from '@/hooks/tools'
+
 import { files } from './WebContainerInstance/files'
 import { WebContainerInstance } from './WebContainerInstance'
 
 const WebContainerRuntime: React.FC = () => {
+  const toolName = useToolName()
   const [ready, setReady] = useState(false)
   const [code, setCode] = useState(files['index.js'].file.contents)
   const [output, setOutput] = useState('')
@@ -52,6 +56,10 @@ const WebContainerRuntime: React.FC = () => {
 
   return (
     <div className='px-4 pt-4'>
+      <ToolTitle
+        name={toolName}
+        githubHref='https://github.com/stackblitz/webcontainer-core'
+      />
       <div className='flex gap-4'>
         <Input.TextArea
           className='flex-1'
