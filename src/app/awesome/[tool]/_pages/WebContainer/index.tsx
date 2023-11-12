@@ -21,6 +21,7 @@ const WebContainerRuntime: React.FC = () => {
   })
 
   useAsyncEffect(async () => {
+    setOutput('Loading...')
     await WebContainerInstance.getInstance()
 
     const exitCode = await WebContainerInstance.installDependencies()
