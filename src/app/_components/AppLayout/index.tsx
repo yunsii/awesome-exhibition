@@ -40,14 +40,17 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                     key: '/',
                     label: <Link href='/'>Introduce</Link>,
                   },
-                  {
-                    key: getToolHref(AwesomeTool.FastTextWasmJs),
-                    label: (
-                      <Link href={getToolHref(AwesomeTool.FastTextWasmJs)}>
-                        {AwesomeTool.FastTextWasmJs}
-                      </Link>
-                    ),
-                  },
+                  ...Object.keys(AwesomeTool).map((item) => {
+                    const key = item as keyof typeof AwesomeTool
+                    return {
+                      key: getToolHref(AwesomeTool[key]),
+                      label: (
+                        <Link href={getToolHref(AwesomeTool[key])}>
+                          {AwesomeTool[key]}
+                        </Link>
+                      ),
+                    }
+                  }),
                 ]}
               />
             </div>
