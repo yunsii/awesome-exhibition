@@ -25,6 +25,7 @@
     "dedent": "^1.5.1",
     "eslint-config-next": "13.4.19",
     "fasttext.wasm.js": "0.0.1-next.2",
+    "ml-matrix": "^6.10.8",
     "next": "13.4.19",
     "postcss": "8.4.29",
     "react": "18.2.0",
