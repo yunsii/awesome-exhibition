@@ -49,6 +49,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                           {AwesomeTool[key]}
                         </Link>
                       ),
+                      title: AwesomeTool[key],
                     }
                   }),
                 ]}
