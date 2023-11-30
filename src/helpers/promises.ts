@@ -1,5 +1,5 @@
-// ref: https://www.typescriptlang.org/docs/handbook/2/generics.html#using-class-types-in-generics
 function throwErrorHelper<E extends Error>(
+  // type ref: https://www.typescriptlang.org/docs/handbook/2/generics.html#using-class-types-in-generics
   CustomError: {
     new (message: string): E
   },
@@ -38,11 +38,11 @@ function throwErrorHelper<E extends Error>(
   }
 }
 
-// type ref：https://github.com/sindresorhus/p-limit/blob/main/index.d.ts
 function fallbackHelper(
   /** Default onError callback, you use it to print log */
   onRawErrorDefault?: (error: unknown) => void,
 ) {
+  // type ref：https://github.com/sindresorhus/p-limit/blob/main/index.d.ts
   return <Arguments extends unknown[], ReturnType>(
     task: (...arguments_: Arguments) => PromiseLike<ReturnType> | ReturnType,
     ..._arguments: Arguments
