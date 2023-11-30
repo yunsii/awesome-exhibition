@@ -1,25 +1,28 @@
 'use client'
 
 /* eslint-disable no-console */
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Alert, Button, Input, Spin } from 'antd'
 
 import { NotFoundError, got } from '@/helpers/mock'
-import { fallback, throwErrorHelper } from '@/helpers/promises'
+import { pConditional } from '@/helpers/promises'
 
-const throwError = throwErrorHelper(Error)
+const pThrowError = pConditional.throwErrorHelper(Error, console.log)
 
-const throw404 = throwErrorHelper(NotFoundError)
+const pThrow404 = pConditional.throwErrorHelper(NotFoundError, console.log)
+
+const pFallback = pConditional.fallbackHelper((err) => {
+  console.log(err)
+  console.log('Use default value instead.')
+})
 
 const ERROR_DELAYS_DEFAULT_VALUE = [0, 0, 0, 0]
 const ERROR_DELAYS_THROW_ERROR_VALUE = [0, 500, 0, 0]
 const ERROR_DELAYS_FALLBACK_VALUE = [0, 0, 500, 0]
 
-export interface IPromiseRaceConditionallyProps {}
+export interface IPromiseAllConditionallyProps {}
 
-const PromiseRaceConditionally: React.FC<
-  IPromiseRaceConditionallyProps
-> = () => {
+const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
   const [results, setResults] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<unknown>()
@@ -32,7 +35,7 @@ const PromiseRaceConditionally: React.FC<
     setLoading(true)
     try {
       const results = await Promise.all([
-        throwError(() =>
+        pThrowError(() =>
           got(
             { a: 1, wrapper: 'throwError' },
             { errorDelay: latestErrorDelays.current[0] },
@@ -40,7 +43,7 @@ const PromiseRaceConditionally: React.FC<
         )({
           fallbackMessage: '{ a: 1 } not found',
         }),
-        throw404(() =>
+        pThrow404(() =>
           got(
             { b: 2, wrapper: 'throw404' },
             { errorDelay: latestErrorDelays.current[1] },
@@ -48,29 +51,21 @@ const PromiseRaceConditionally: React.FC<
         )({
           fallbackMessage: '{ b: 2 } not found',
         }),
-        fallback(() =>
+        pFallback(() =>
           got(
             { c: 3, wrapper: 'fallback' },
             { errorDelay: latestErrorDelays.current[2] },
           ),
         )({
           defaultValue: { c: 0, wrapper: 'fallback' },
-          onError: (err) => {
-            console.log(err)
-            console.log(`use default value instead.`)
-          },
         }),
-        fallback(() =>
+        pFallback(() =>
           got(
             { d: 4, wrapper: 'fallback' },
             { errorDelay: latestErrorDelays.current[3] },
           ),
         )({
           defaultValue: null,
-          onError: (err) => {
-            console.log(err)
-            console.log(`use default value instead.`)
-          },
         }),
       ])
       setResults(results)
@@ -87,6 +82,10 @@ const PromiseRaceConditionally: React.FC<
     setErrorDelays(delays)
     latestErrorDelays.current = delays
   }
+
+  useEffect(() => {
+    runTasks()
+  }, [])
 
   return (
     <div className='px-4 pt-4'>
@@ -140,4 +139,4 @@ const PromiseRaceConditionally: React.FC<
   )
 }
 
-export default PromiseRaceConditionally
+export default PromiseAllConditionally
