@@ -3,7 +3,7 @@ function throwErrorHelper<E extends Error>(
   CustomError: {
     new (message: string): E
   },
-  /** Default onError callback, you use it to print log */
+  /** Default onError callback, you can use it to print log */
   onRawErrorDefault?: (error: unknown) => void,
 ) {
   return <Arguments extends unknown[], ReturnType>(
@@ -14,7 +14,7 @@ function throwErrorHelper<E extends Error>(
       fallbackMessage: string
       /**
        * Custom onError callback to overwrite default onError callback,
-       * you use it to print log
+       * you can use it to print log
        */
       onRawError?: (error: unknown) => void
     }) => {
@@ -39,7 +39,7 @@ function throwErrorHelper<E extends Error>(
 }
 
 function fallbackHelper(
-  /** Default onError callback, you use it to print log */
+  /** Default onError callback, you can use it to print log */
   onRawErrorDefault?: (error: unknown) => void,
 ) {
   // type ref：https://github.com/sindresorhus/p-limit/blob/main/index.d.ts
@@ -51,7 +51,7 @@ function fallbackHelper(
       defaultValue: null
       /**
        * Custom onError callback to overwrite default onError callback,
-       * you use it to print log
+       * you can use it to print log
        */
       onRawError?: (error: unknown) => void
     }): Promise<ReturnType | null>
@@ -59,7 +59,7 @@ function fallbackHelper(
       defaultValue: ReturnType
       /**
        * Custom onError callback to overwrite default onError callback,
-       * you use it to print log
+       * you can use it to print log
        */
       onRawError?: (error: unknown) => void
     }): Promise<ReturnType>
