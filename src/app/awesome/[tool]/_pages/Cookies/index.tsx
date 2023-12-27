@@ -141,8 +141,20 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
           <Input />
         </Form.Item>
         <Divider style={{ margin: '24px 0' }} />
-        <Form.Item name='maxAge' label='Max Age'>
-          <InputNumber min={-1} step={1000} />
+        <Form.Item noStyle shouldUpdate>
+          {(form) => {
+            return (
+              <Form.Item name='maxAge' label='Max Age'>
+                <InputNumber
+                  min={-1}
+                  step={form.getFieldValue('maxAge') < 0 ? 1 : 1000}
+                  style={{
+                    width: '100%',
+                  }}
+                />
+              </Form.Item>
+            )
+          }}
         </Form.Item>
         <Form.Item name='httpOnly' label='Http Only' valuePropName='checked'>
           <Switch />
@@ -184,14 +196,18 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
           name='createByApi'
           label='Create by api'
           valuePropName='checked'
-          extra={<em>No cookies will be created by api by default.</em>}
         >
           <Switch />
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 6, span: 14 }}>
-          <Button htmlType='submit' type='primary'>
-            Set cookie
-          </Button>
+        <Form.Item wrapperCol={{ offset: 6, span: 14 }} shouldUpdate>
+          {(form) => {
+            const danger = form.getFieldValue('maxAge') <= 0
+            return (
+              <Button htmlType='submit' type='primary' danger={danger}>
+                {danger ? 'Remove cookie' : 'Set cookie'}
+              </Button>
+            )
+          }}
         </Form.Item>
       </Form>
 
