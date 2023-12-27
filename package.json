@@ -57,5 +57,6 @@
     "**/*.{js,jsx,tsx,ts,css,less,scss,sass,md,yaml}": [
       "prettier --write --no-plugin-search"
     ]
-  }
+  },
+  "packageManager": "pnpm@8.13.1"
 }
