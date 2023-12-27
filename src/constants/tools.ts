@@ -3,4 +3,5 @@ export enum AwesomeTool {
   WebContainer = 'web-container',
   MlMatrix = 'ml-matrix',
   PromiseAllConditional = 'promise-all-conditionally',
+  Cookies = 'cookies',
 }
