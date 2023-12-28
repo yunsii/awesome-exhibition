@@ -53,6 +53,7 @@
     "prettier": "^3.0.3",
     "sass": "^1.67.0",
     "tailwindcss-plugin-iconify": "^0.1.4",
+    "type-fest": "^4.9.0",
     "unplugin-polish-tagged-templates": "0.1.1-beta.2"
   },
   "lint-staged": {

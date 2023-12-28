@@ -118,6 +118,9 @@ devDependencies:
   tailwindcss-plugin-iconify:
     specifier: ^0.1.4
     version: 0.1.6(ts-node@10.9.1)
+  type-fest:
+    specifier: ^4.9.0
+    version: 4.9.0
   unplugin-polish-tagged-templates:
     specifier: 0.1.1-beta.2
     version: 0.1.1-beta.2(vue@3.3.13)
@@ -6266,6 +6269,11 @@ packages:
   /type-fest@1.4.0:
     resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /type-fest@4.9.0:
+    resolution: {integrity: sha512-KS/6lh/ynPGiHD/LnAobrEFq3Ad4pBzOlJ1wAnJx9N4EYoqFhMfLIBjUT2UEx4wg5ZE+cC1ob6DCSpppVo+rtg==}
+    engines: {node: '>=16'}
     dev: true
 
   /typed-array-buffer@1.0.0:

@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   InputNumber,
+  Radio,
   Select,
   Space,
   Switch,
@@ -14,16 +15,20 @@ import {
 } from 'antd'
 import cookie from 'cookie'
 import { useUpdate } from 'ahooks'
+import type { TupleToUnion } from 'type-fest'
 
 import type { InputRef } from 'antd'
 
 export const COOKIE_PREFIX = '_AWESOME_'
 
+export const PRESERVED_PREFIXES = ['__Secure-', '__Host-', 'None'] as const
+
 export interface ICookieFormValues extends cookie.CookieSerializeOptions {
   name: string
   value: string
 
-  createByApi?: boolean
+  preservedPrefix?: TupleToUnion<typeof PRESERVED_PREFIXES>
+  useApi?: boolean
 }
 
 export interface IPromiseAllConditionallyProps {}
@@ -36,7 +41,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
 
   const rawCookies = cookie.parse(document.cookie)
   const awesomeCookies = Object.keys(rawCookies)
-    .filter((item) => item.startsWith(COOKIE_PREFIX))
+    .filter((item) => item.includes(COOKIE_PREFIX))
     .reduce((previous, current) => {
       return {
         ...previous,
@@ -49,14 +54,21 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
   const [newCookieName, setNewCookieName] = useState('')
 
   const handleSetCookie = async (values: ICookieFormValues) => {
-    const { name, value, createByApi, ...options } = values
+    const { name, value, useApi, preservedPrefix, ...options } = values
+    let internalName = name.startsWith(COOKIE_PREFIX)
+      ? name
+      : `${COOKIE_PREFIX}${name}`
+    internalName =
+      !preservedPrefix || preservedPrefix === 'None'
+        ? internalName
+        : `${preservedPrefix}${internalName}`
     const cookieSerialized = cookie.serialize(
-      name.startsWith(COOKIE_PREFIX) ? name : `${COOKIE_PREFIX}${name}`,
+      internalName,
       value ?? '',
       options,
     )
 
-    if (createByApi) {
+    if (useApi) {
       // eslint-disable-next-line no-console
       console.log('[💎 Server] cookieSerialized:', cookieSerialized)
       const axios = (await import('axios')).default
@@ -193,10 +205,47 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
         </Form.Item>
         <Divider style={{ margin: '24px 0' }} />
         <Form.Item
-          name='createByApi'
-          label='Create by api'
-          valuePropName='checked'
+          name='preservedPrefix'
+          label='Preserved Prefix'
+          extra={
+            <ul className='list-disc'>
+              <li>
+                <em>
+                  No{' '}
+                  <a
+                    href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#define_where_cookies_are_sent'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    preserved prefix
+                  </a>{' '}
+                  will be used by default
+                </em>
+              </li>
+              <li>
+                <em>
+                  <a
+                    href='https://datatracker.ietf.org/doc/html/draft-west-cookie-prefixes-05#section-3'
+                    rel='noreferrer'
+                  >
+                    Prefix additional rules
+                  </a>
+                </em>
+              </li>
+            </ul>
+          }
         >
+          <Radio.Group>
+            {PRESERVED_PREFIXES.map((item) => {
+              return (
+                <Radio key={item} value={item}>
+                  {item}
+                </Radio>
+              )
+            })}
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item name='useApi' label='Use api' valuePropName='checked'>
           <Switch />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 6, span: 14 }} shouldUpdate>
