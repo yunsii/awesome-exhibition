@@ -15,8 +15,8 @@ import {
 } from 'antd'
 import cookie from 'cookie'
 import { useUpdate } from 'ahooks'
-import type { TupleToUnion } from 'type-fest'
 
+import type { TupleToUnion } from 'type-fest'
 import type { InputRef } from 'antd'
 
 export const COOKIE_PREFIX = '_AWESOME_'
