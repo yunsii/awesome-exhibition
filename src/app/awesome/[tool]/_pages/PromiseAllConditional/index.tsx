@@ -89,8 +89,10 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
 
   return (
     <div className='px-4 pt-4'>
-      <div className={`flex gap-2 mb-2`}>
+      <div className={`flex items-center gap-x-2 mb-2`}>
+        Error delays
         <Input
+          className='max-w-xs'
           placeholder='Error delays'
           value={errorDelays.join(',')}
           onChange={(event) => {
@@ -102,6 +104,8 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
           }}
         />
         <Button onClick={() => runTasks()}>Run</Button>
+      </div>
+      <div className={`flex gap-2 mb-2`}>
         <Button
           onClick={() => {
             handleChangeErrorDelays(ERROR_DELAYS_DEFAULT_VALUE)
