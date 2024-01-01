@@ -77,7 +77,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
             </div>
           </div>
         </Layout.Sider>
-        <Layout>
+        <Layout className='max-h-screen overflow-auto'>
           <Layout.Content>{children}</Layout.Content>
         </Layout>
       </Layout>
