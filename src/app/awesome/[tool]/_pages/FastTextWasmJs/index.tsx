@@ -5,7 +5,7 @@ import { Alert, Form, Input } from 'antd'
 import {
   LanguageIdentificationModel,
   initializeFastTextModule,
-} from 'fasttext.wasm.js/browser'
+} from 'fasttext.wasm.js/common'
 import { useDebounceFn, useMount } from 'ahooks'
 
 import { useToolName } from '@/hooks/tools'
@@ -28,7 +28,17 @@ const FastTextWasmJs: React.FC = () => {
 
   const handleDetect = useDebounceFn(async (values: Values) => {
     setLoading(true)
-    await initializeFastTextModule()
+    await initializeFastTextModule({
+      locateFile: (url, scriptDir) => {
+        // eslint-disable-next-line no-console
+        console.log(
+          '🚀 ~ file: index.tsx:36 ~ handleDetect ~ url, scriptDir:',
+          url,
+          scriptDir,
+        )
+        return `/${url}`
+      },
+    })
     const model = new LanguageIdentificationModel({
       // Specific model path under public dir,
       // You can download it from https://fasttext.cc/docs/en/language-identification.html
