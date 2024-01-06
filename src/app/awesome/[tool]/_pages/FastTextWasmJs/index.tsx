@@ -2,11 +2,8 @@
 
 import React, { useState } from 'react'
 import { Alert, Form, Input } from 'antd'
-import {
-  LanguageIdentificationModel,
-  initializeFastTextModule,
-} from 'fasttext.wasm.js/common'
 import { useDebounceFn, useMount } from 'ahooks'
+import { getLIDModel } from 'fasttext.wasm.js/common'
 
 import { useToolName } from '@/hooks/tools'
 import ToolTitle from '@/app/_components/ToolTitle'
@@ -22,33 +19,21 @@ const initialValues: Values = {
 const FastTextWasmJs: React.FC = () => {
   const toolName = useToolName()
   const [lang, setLang] = useState<string>()
+  const [possibility, setPossibility] = useState<number>()
   const [loading, setLoading] = useState(false)
 
   const identified = lang && !loading
 
   const handleDetect = useDebounceFn(async (values: Values) => {
     setLoading(true)
-    await initializeFastTextModule({
-      locateFile: (url, scriptDir) => {
-        // eslint-disable-next-line no-console
-        console.log(
-          '🚀 ~ file: index.tsx:36 ~ handleDetect ~ url, scriptDir:',
-          url,
-          scriptDir,
-        )
-        return `/${url}`
-      },
-    })
-    const model = new LanguageIdentificationModel({
-      // Specific model path under public dir,
-      // You can download it from https://fasttext.cc/docs/en/language-identification.html
-      modelHref: '/models/lid.176.ftz',
-    })
-    await model.load()
-    const result = await model.identifyVerbose(values.input)
+    const lidModel = await getLIDModel()
+    await lidModel.load()
+    const result = await lidModel.identifyVerbose(values.input)
     // eslint-disable-next-line no-console
     console.log('result', JSON.stringify(result, null, 2))
+
     setLang(result[0].lang)
+    setPossibility(result[0].possibility)
     setLoading(false)
   })
 
@@ -78,7 +63,8 @@ const FastTextWasmJs: React.FC = () => {
           identified ? (
             <div>
               <span>Identify Lang: </span>
-              <span className={`font-bold`}>{lang?.toUpperCase()}</span>
+              <span className={`font-bold`}>{lang?.toUpperCase()}</span> with
+              possibility {possibility}
             </div>
           ) : (
             <div>Identifying...</div>
