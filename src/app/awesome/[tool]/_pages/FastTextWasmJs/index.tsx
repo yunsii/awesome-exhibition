@@ -28,11 +28,11 @@ const FastTextWasmJs: React.FC = () => {
     setLoading(true)
     const lidModel = await getLIDModel()
     await lidModel.load()
-    const result = await lidModel.identifyVerbose(values.input)
+    const result = await lidModel.identify(values.input, 10)
     // eslint-disable-next-line no-console
     console.log('result', JSON.stringify(result, null, 2))
 
-    setLang(result[0].lang)
+    setLang(result[0].alpha3)
     setPossibility(result[0].possibility)
     setLoading(false)
   })
