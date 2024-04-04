@@ -10,6 +10,7 @@ import type { TupleToUnion } from 'type-fest'
 import type { Key } from 'path-to-regexp'
 
 import { toRegExpString } from '@/helpers/regexp'
+import { getErrorMessage } from '@/helpers/error'
 
 export interface IPathToRegExpFormValues {
   path: string
@@ -138,10 +139,19 @@ const PathToRegExp: React.FC<PathToRegExpProps> = () => {
               }
 
               const keys: Key[] = []
-              const regexp = pathToRegexp(path, keys, {
-                ...restOptions,
-                encode: internalEncode,
-              })
+
+              let regexp: RegExp
+
+              try {
+                regexp = pathToRegexp(path, keys, {
+                  ...restOptions,
+                  encode: internalEncode,
+                })
+              }
+              catch (err) {
+                return <div className='text-red-500'>{getErrorMessage(err)}</div>
+              }
+
               const execResult = regexp.exec(testPath || '')
               return (
                 <div>
