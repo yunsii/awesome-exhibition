@@ -70,7 +70,8 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
       ])
       setResults(results)
       setError(null)
-    } catch (err) {
+    }
+    catch (err) {
       console.log(err)
       setResults([])
       setError(err)
@@ -89,7 +90,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
 
   return (
     <div className='px-4 pt-4'>
-      <div className={`flex items-center gap-x-2 mb-2`}>
+      <div className='flex items-center gap-x-2 mb-2'>
         Error delays
         <Input
           className='max-w-xs'
@@ -105,7 +106,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
         />
         <Button onClick={() => runTasks()}>Run</Button>
       </div>
-      <div className={`flex gap-2 mb-2`}>
+      <div className='flex gap-2 mb-2'>
         <Button
           onClick={() => {
             handleChangeErrorDelays(ERROR_DELAYS_DEFAULT_VALUE)
@@ -135,7 +136,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
         <Alert type='error' message='Error ocurred, please check in console.' />
       )}
       <Spin spinning={loading}>
-        <div className={`whitespace-pre`}>
+        <div className='whitespace-pre'>
           {JSON.stringify(results, null, 2)}
         </div>
       </Spin>

@@ -16,12 +16,10 @@ import {
 import cookie from 'cookie'
 import { useUpdate } from 'ahooks'
 
+import { COOKIE_PREFIX, PRESERVED_PREFIXES } from './constants'
+
 import type { TupleToUnion } from 'type-fest'
 import type { InputRef } from 'antd'
-
-export const COOKIE_PREFIX = '_AWESOME_'
-
-export const PRESERVED_PREFIXES = ['__Secure-', '__Host-', 'None'] as const
 
 export interface ICookieFormValues extends cookie.CookieSerializeOptions {
   name: string
@@ -58,8 +56,8 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
     let internalName = name.startsWith(COOKIE_PREFIX)
       ? name
       : `${COOKIE_PREFIX}${name}`
-    internalName =
-      !preservedPrefix || preservedPrefix === 'None'
+    internalName
+      = !preservedPrefix || preservedPrefix === 'None'
         ? internalName
         : `${preservedPrefix}${internalName}`
     const cookieSerialized = cookie.serialize(
@@ -73,7 +71,8 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
       console.log('[💎 Server] cookieSerialized:', cookieSerialized)
       const axios = (await import('axios')).default
       axios.post('/api/cookie', cookieSerialized)
-    } else {
+    }
+    else {
       // eslint-disable-next-line no-console
       console.log('[📍 Client] cookieSerialized:', cookieSerialized)
       document.cookie = cookieSerialized
@@ -207,18 +206,20 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
         <Form.Item
           name='preservedPrefix'
           label='Preserved Prefix'
-          extra={
+          extra={(
             <ul className='list-disc'>
               <li>
                 <em>
-                  No{' '}
+                  No
+                  {' '}
                   <a
                     href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#define_where_cookies_are_sent'
                     target='_blank'
                     rel='noreferrer'
                   >
                     preserved prefix
-                  </a>{' '}
+                  </a>
+                  {' '}
                   will be used by default
                 </em>
               </li>
@@ -233,7 +234,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
                 </em>
               </li>
             </ul>
-          }
+          )}
         >
           <Radio.Group>
             {PRESERVED_PREFIXES.map((item) => {

@@ -6,11 +6,11 @@ import { useServerInsertedHTML } from 'next/navigation'
 
 import type Entity from '@ant-design/cssinjs/es/Cache'
 
-const StyledComponentsRegistry = ({
+function StyledComponentsRegistry({
   children,
 }: {
   children: React.ReactNode
-}) => {
+}) {
   const cache = React.useMemo<Entity>(() => createCache(), [])
   useServerInsertedHTML(() => (
     <style

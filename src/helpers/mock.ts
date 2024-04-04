@@ -1,6 +1,6 @@
 export function got<T>(
   data: T,
-  options: { delay?: number; errorDelay?: number | null } = {},
+  options: { delay?: number, errorDelay?: number | null } = {},
 ) {
   const { delay = 1000, errorDelay } = options
 

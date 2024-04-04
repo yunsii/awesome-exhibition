@@ -4,22 +4,12 @@ import React from 'react'
 import { Button, Divider, Form, Input, Radio, Switch } from 'antd'
 import { match, pathToRegexp } from 'path-to-regexp'
 
-import { toRegExpString } from '@/helpers/regexp'
+import { DECODE_OPTIONS, ENCODE_OPTIONS } from './contants'
 
 import type { TupleToUnion } from 'type-fest'
 import type { Key } from 'path-to-regexp'
 
-export const ENCODE_OPTIONS = [
-  'encodeURI',
-  'encodeURIComponent',
-  'None',
-] as const
-
-export const DECODE_OPTIONS = [
-  'decodeURI',
-  'decodeURIComponent',
-  'None',
-] as const
+import { toRegExpString } from '@/helpers/regexp'
 
 export interface IPathToRegExpFormValues {
   path: string
@@ -171,13 +161,15 @@ const PathToRegExp: React.FC<PathToRegExpProps> = () => {
                   {testPath && (
                     <div className='flex gap-x-2'>
                       <em>Exec result</em>
-                      {execResult === null ? (
-                        <code>null</code>
-                      ) : (
-                        <code className='whitespace-pre'>
-                          {JSON.stringify(execResult)}
-                        </code>
-                      )}
+                      {execResult === null
+                        ? (
+                          <code>null</code>
+                          )
+                        : (
+                          <code className='whitespace-pre'>
+                            {JSON.stringify(execResult)}
+                          </code>
+                          )}
                     </div>
                   )}
                 </div>

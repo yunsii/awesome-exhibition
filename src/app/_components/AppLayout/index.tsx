@@ -5,9 +5,9 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { getToolHref } from '@/helpers/router'
-
 import { AwesomeTool } from '../../../constants/tools'
+
+import { getToolHref } from '@/helpers/router'
 
 export interface AppLayoutProps {
   children?: React.ReactNode
@@ -23,7 +23,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
         <Layout.Sider theme='light'>
           <div className='flex flex-col h-full'>
             <h1
-              className={`text-center py-3 font-bold text-lg bg-clip-text bg-cover text-transparent`}
+              className='text-center py-3 font-bold text-lg bg-clip-text bg-cover text-transparent'
               style={{
                 backgroundImage:
                   'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)',
@@ -32,7 +32,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
               Awesome Exhibition
             </h1>
 
-            <div className={`flex-1`}>
+            <div className='flex-1'>
               <Menu
                 selectedKeys={[pathname]}
                 items={[
@@ -55,7 +55,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                 ]}
               />
             </div>
-            <div className={`px-1 pb-1`}>
+            <div className='px-1 pb-1'>
               <a
                 href='https://github.com/yunsii/awesome-exhibition'
                 target='_blank'
@@ -63,7 +63,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
               >
                 <Button
                   block
-                  className={`flex h-4 gap-x-2`}
+                  className='flex h-4 gap-x-2'
                   style={{
                     display: 'flex',
                     justifyContent: 'center',

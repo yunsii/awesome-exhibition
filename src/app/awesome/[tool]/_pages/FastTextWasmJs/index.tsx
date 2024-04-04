@@ -42,7 +42,7 @@ const FastTextWasmJs: React.FC = () => {
   })
 
   return (
-    <div className={`p-4`}>
+    <div className='p-4'>
       <ToolTitle
         name={toolName}
         githubHref='https://github.com/yunsii/fasttext.wasm.js'
@@ -60,15 +60,20 @@ const FastTextWasmJs: React.FC = () => {
       </Form>
       <Alert
         message={
-          identified ? (
-            <div>
-              <span>Identify Lang: </span>
-              <span className={`font-bold`}>{lang?.toUpperCase()}</span> with
-              possibility {possibility}
-            </div>
-          ) : (
-            <div>Identifying...</div>
-          )
+          identified
+            ? (
+              <div>
+                <span>Identify Lang: </span>
+                <span className='font-bold'>{lang?.toUpperCase()}</span>
+                {' '}
+                with
+                possibility
+                {possibility}
+              </div>
+              )
+            : (
+              <div>Identifying...</div>
+              )
         }
         type={identified ? 'success' : 'info'}
       />
