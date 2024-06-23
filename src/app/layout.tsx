@@ -10,7 +10,6 @@ import { siteData } from '@/constants/site'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const metadata: Metadata = {
   title: siteData.name,
   description: 'Awesome exhibition for awesome tools',

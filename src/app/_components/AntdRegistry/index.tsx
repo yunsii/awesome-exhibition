@@ -13,6 +13,7 @@ function StyledComponentsRegistry({
 }) {
   const cache = React.useMemo<Entity>(() => createCache(), [])
   useServerInsertedHTML(() => (
+    // eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
     <style
       id='antd'
       dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}
