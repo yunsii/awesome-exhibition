@@ -5,4 +5,5 @@ export enum AwesomeTool {
   MlMatrix = 'ml-matrix',
   PathToRegexp = 'path-to-regexp',
   PromiseAllConditional = 'promise-all-conditionally',
+  Sse = 'sse',
 }

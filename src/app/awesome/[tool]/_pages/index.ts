@@ -14,6 +14,9 @@ const PathToRegexp = dynamic(() => import('./PathToRegexp'), {
 const PromiseAllConditional = dynamic(() => import('./PromiseAllConditional'), {
   ssr: false,
 })
+const Sse = dynamic(() => import('./Sse'), {
+  ssr: false,
+})
 
 const pages = {
   [AwesomeTool.Cookies]: Cookies,
@@ -22,6 +25,7 @@ const pages = {
   [AwesomeTool.MlMatrix]: MlMatrix,
   [AwesomeTool.PathToRegexp]: PathToRegexp,
   [AwesomeTool.PromiseAllConditional]: PromiseAllConditional,
+  [AwesomeTool.Sse]: Sse,
 }
 
 export default pages
