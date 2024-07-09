@@ -19,7 +19,7 @@ function StyledComponentsRegistry({
       dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}
     />
   ))
-  return <StyleProvider cache={cache}>{children}</StyleProvider>
+  return <StyleProvider cache={cache} layer>{children}</StyleProvider>
 }
 
 export default StyledComponentsRegistry

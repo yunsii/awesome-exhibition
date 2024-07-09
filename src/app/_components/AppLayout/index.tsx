@@ -40,6 +40,10 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                     key: '/',
                     label: <Link href='/'>Introduce</Link>,
                   },
+                  {
+                    key: '/streaming',
+                    label: <Link href='/streaming'>Streaming Page</Link>,
+                  },
                   ...Object.keys(AwesomeTool).map((item) => {
                     const key = item as keyof typeof AwesomeTool
                     return {

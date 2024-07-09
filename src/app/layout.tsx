@@ -1,8 +1,8 @@
 import './globals.scss'
 import { Inter } from 'next/font/google'
 
-import StyledComponentsRegistry from './_components/AntdRegistry'
 import AppLayout from './_components/AppLayout'
+import AntdRegistry from './_components/AntdRegistry'
 
 import type { Metadata } from 'next'
 
@@ -23,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <StyledComponentsRegistry>
+        <AntdRegistry>
           <AppLayout>{children}</AppLayout>
-        </StyledComponentsRegistry>
+        </AntdRegistry>
       </body>
     </html>
   )

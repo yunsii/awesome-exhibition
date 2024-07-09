@@ -12,13 +12,13 @@
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
-    "@ant-design/cssinjs": "^1.17.0",
+    "@ant-design/cssinjs": "^1.21.0",
     "@types/node": "20.6.1",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@webcontainer/api": "^1.1.8",
     "ahooks": "^3.7.8",
-    "antd": "^5.9.1",
+    "antd": "^5.19.1",
     "autoprefixer": "10.4.15",
     "axios": "^1.6.3",
     "cookie": "^0.6.0",
