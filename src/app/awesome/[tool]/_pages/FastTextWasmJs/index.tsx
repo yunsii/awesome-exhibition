@@ -63,11 +63,13 @@ const FastTextWasmJs: React.FC = () => {
           identified
             ? (
               <div>
-                <span>Identify Lang: </span>
+                <span>Identify Lang:</span>
+                {' '}
                 <span className='font-bold'>{lang?.toUpperCase()}</span>
                 {' '}
                 with
                 possibility
+                {' '}
                 {possibility}
               </div>
               )
