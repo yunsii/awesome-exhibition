@@ -28,6 +28,7 @@
     "fasttext.wasm.js": "1.0.0",
     "ml-matrix": "^6.11.1",
     "next": "14.2.4",
+    "node-fetch": "^3.3.2",
     "path-to-regexp": "^6.2.1",
     "postcss": "8.4.29",
     "react": "18.3.1",

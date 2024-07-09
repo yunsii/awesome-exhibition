@@ -1,11 +1,18 @@
-import { setTimeout } from 'node:timers/promises'
+import https from 'node:https'
+
+import fetch from 'node-fetch'
+
+// ref: https://github.com/node-fetch/node-fetch/issues/568#issuecomment-932200523
+const agent = new https.Agent({
+  rejectUnauthorized: false,
+})
 
 async function getData() {
-  await setTimeout(5000)
+  const result = fetch('https://hub.dummyapis.com/delay?seconds=5', {
+    agent,
+  })
 
-  return {
-    ok: 1,
-  }
+  return result
 }
 
 export default async function Page() {
