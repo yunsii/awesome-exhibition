@@ -1,3 +1,5 @@
+import polishTaggedTemplates from 'unplugin-polish-tagged-templates/webpack'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => {
@@ -8,9 +10,8 @@ const nextConfig = {
     }
 
     config.plugins.push(
-      require('unplugin-polish-tagged-templates/webpack').default({
-        debug: true,
-        cssTags: ['raw'],
+      polishTaggedTemplates({
+        cssTags: ['cls', 'tw'],
       }),
     )
 
@@ -44,4 +45,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig
