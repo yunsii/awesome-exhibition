@@ -2,6 +2,7 @@ import polishTaggedTemplates from 'unplugin-polish-tagged-templates/webpack'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   webpack: (config) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
