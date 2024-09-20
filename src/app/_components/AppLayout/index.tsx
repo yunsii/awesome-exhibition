@@ -44,18 +44,22 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                     key: '/streaming',
                     label: <Link href='/streaming'>Streaming Page</Link>,
                   },
-                  ...Object.keys(AwesomeTool).map((item) => {
-                    const key = item as keyof typeof AwesomeTool
-                    return {
-                      key: getToolHref(AwesomeTool[key]),
-                      label: (
-                        <Link href={getToolHref(AwesomeTool[key])}>
-                          {AwesomeTool[key]}
-                        </Link>
-                      ),
-                      title: AwesomeTool[key],
-                    }
-                  }),
+                  {
+                    key: '/awesome-tools',
+                    label: 'Awesome Tools',
+                    children: Object.keys(AwesomeTool).map((item) => {
+                      const key = item as keyof typeof AwesomeTool
+                      return {
+                        key: getToolHref(AwesomeTool[key]),
+                        label: (
+                          <Link href={getToolHref(AwesomeTool[key])}>
+                            {AwesomeTool[key]}
+                          </Link>
+                        ),
+                        title: AwesomeTool[key],
+                      }
+                    }),
+                  },
                 ]}
               />
             </div>
@@ -67,7 +71,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
               >
                 <Button
                   block
-                  className='flex h-4 gap-x-2'
+                  className='flex h-8 gap-x-2'
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
