@@ -10,7 +10,7 @@ export default async function Page() {
             <div className='flex-1 flex flex-col'>
               <div className='bg-slate-300'>Nest 3</div>
               <div className='flex-1 h-0 overflow-y-auto bg-cyan-200'>
-                {Array.from({ length: 40 }).map((_, index) => {
+                {Array.from({ length: 200 }).map((_, index) => {
                   return index
                 }).map((item) => {
                   return <div key={item}>{item}</div>
@@ -30,8 +30,8 @@ export default async function Page() {
               <div className='bg-slate-300'>Nest 3</div>
               <div className='flex-1 flex'>
                 <div className='bg-slate-400'>Nest 4</div>
-                <div className='flex flex-1 w-0 overflow-x-auto bg-cyan-200'>
-                  {Array.from({ length: 100 }).map((_, index) => {
+                <div className='flex flex-1 w-0 overflow-x-auto bg-cyan-200 gap-1'>
+                  {Array.from({ length: 200 }).map((_, index) => {
                     return index
                   }).map((item) => {
                     return <div key={item}>{item}</div>
