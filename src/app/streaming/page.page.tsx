@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { Counter } from './components/Counter'
 import Data from './components/Data'
-import Loading from './loading'
+import Loading from './loading.page'
 
 // ref: https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
 // eslint-disable-next-line react-refresh/only-export-components

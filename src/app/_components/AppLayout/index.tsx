@@ -34,7 +34,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
 
             <div className='flex-1'>
               <Menu
-                selectedKeys={[pathname]}
+                selectedKeys={pathname ? [pathname] : []}
                 items={[
                   {
                     key: '/',
