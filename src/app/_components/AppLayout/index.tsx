@@ -45,6 +45,10 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                     label: <Link href='/streaming'>Streaming Page</Link>,
                   },
                   {
+                    key: '/flex-1-scrollbar',
+                    label: <Link href='/flex-1-scrollbar'>Flex 1 with Scrollbar</Link>,
+                  },
+                  {
                     key: '/awesome-tools',
                     label: 'Awesome Tools',
                     children: Object.keys(AwesomeTool).map((item) => {
