@@ -8,6 +8,9 @@ dependencies:
   '@ant-design/cssinjs':
     specifier: ^1.21.0
     version: 1.21.0(react-dom@18.3.1)(react@18.3.1)
+  '@tw-classed/react':
+    specifier: ^1.7.0
+    version: 1.7.0(react@18.3.1)
   '@types/node':
     specifier: 20.6.1
     version: 20.6.1
@@ -1274,6 +1277,19 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
     dev: true
+
+  /@tw-classed/core@1.7.0:
+    resolution: {integrity: sha512-D57pNSN3JY2pRB6iPzZKB0m0hWfNGZ6MkxavYxgTDp+YIosi9VwDn6Cc87qcOM3ogu2CFvIAi2XXoAREnz0UFQ==}
+    dev: false
+
+  /@tw-classed/react@1.7.0(react@18.3.1):
+    resolution: {integrity: sha512-7xEy/wQzoqBLU+xehwsc4Oz1Bqh561X80fUM6B3emZlxuXlwI/7rKE2b+RZrXGNtOKhJ+1CsJkCZ1EFfFSUrew==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      '@tw-classed/core': 1.7.0
+      react: 18.3.1
+    dev: false
 
   /@types/conventional-commits-parser@5.0.0:
     resolution: {integrity: sha512-loB369iXNmAZglwWATL+WRe+CRMmmBPtpolYzIebFaX4YA3x+BEfLqhUAV9WanycKI3TG1IMr5bMJDajDKLlUQ==}
