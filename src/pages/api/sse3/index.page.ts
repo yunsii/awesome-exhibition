@@ -1,4 +1,4 @@
-import { createNextApi } from '../helpers/api'
+import { createNextApi } from '../_helpers/api'
 
 // This is required to enable streaming
 export const dynamic = 'force-dynamic'
