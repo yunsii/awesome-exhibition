@@ -1,6 +1,7 @@
-import dynamic from 'next/dynamic'
+'use client'
 
 import { AwesomeTool } from '@/constants/tools'
+import dynamic from 'next/dynamic'
 
 const Cookies = dynamic(() => import('./Cookies'), {
   ssr: false,

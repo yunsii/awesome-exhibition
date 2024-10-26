@@ -1,7 +1,12 @@
 import polishTaggedTemplates from 'unplugin-polish-tagged-templates/webpack'
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
+  // ref: https://github.com/vercel/next.js/issues/71638
+  sassOptions: {
+    silenceDeprecations: ['legacy-js-api'],
+  },
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   webpack: (config) => {
     config.resolve.fallback = {
@@ -12,7 +17,7 @@ const nextConfig = {
 
     config.plugins.push(
       polishTaggedTemplates({
-        cssTags: ['cls', 'tw'],
+        clsTags: ['cls', 'tw'],
       }),
     )
 
