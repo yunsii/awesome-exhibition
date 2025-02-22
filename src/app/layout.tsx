@@ -1,12 +1,12 @@
-import './globals.scss'
+import { siteData } from '@/constants/site'
 import { Inter } from 'next/font/google'
-
-import AppLayout from './_components/AppLayout'
-import AntdRegistry from './_components/AntdRegistry'
 
 import type { Metadata } from 'next'
 
-import { siteData } from '@/constants/site'
+import AntdRegistry from './_components/AntdRegistry'
+import AppLayout from './_components/AppLayout'
+
+import './globals.scss'
 
 const inter = Inter({ subsets: ['latin'] })
 

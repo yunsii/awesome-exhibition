@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
   sassOptions: {
     silenceDeprecations: ['legacy-js-api'],
   },
-  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   webpack: (config) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,

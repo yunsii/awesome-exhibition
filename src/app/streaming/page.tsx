@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { Counter } from './components/Counter'
 import Data from './components/Data'
-import Loading from './loading.page'
+import Loading from './loading'
 
 // ref: https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
 export const dynamic = 'force-dynamic'

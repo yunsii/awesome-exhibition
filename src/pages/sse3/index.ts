@@ -1,4 +1,4 @@
-import { createNextApi } from '../_helpers/api'
+import { createNextApi } from '../../helpers/pages-router/api'
 
 // This is required to enable streaming
 export const dynamic = 'force-dynamic'
