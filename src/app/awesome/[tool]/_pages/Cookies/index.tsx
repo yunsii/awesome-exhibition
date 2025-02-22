@@ -13,7 +13,7 @@ import {
   Space,
   Switch,
 } from 'antd'
-import cookie from 'cookie'
+import * as cookie from 'cookie'
 import React, { useRef, useState } from 'react'
 
 import type { InputRef } from 'antd'
