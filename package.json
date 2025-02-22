@@ -2,7 +2,7 @@
   "name": "awesome-exhibition",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@10.4.1",
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
@@ -61,6 +61,12 @@
     "tailwindcss-plugin-iconify": "^1.4.5",
     "type-fest": "^4.9.0",
     "unplugin-polish-tagged-templates": "0.2.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "sharp"
+    ]
   },
   "lint-staged": {
     "*": "eslint --flag unstable_ts_config --fix"
