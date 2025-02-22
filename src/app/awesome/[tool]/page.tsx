@@ -10,9 +10,9 @@ function check(tool: string): tool is AwesomeTool {
   return Object.values(AwesomeTool).includes(tool as any)
 }
 
-export default function Tool(props: { params: { tool: string } }) {
+export default function Tool(props: { params: Promise<{ tool: string }> }) {
   const { params } = props
-  const { tool } = params
+  const { tool } = React.use(params)
 
   if (!check(tool)) {
     notFound()
