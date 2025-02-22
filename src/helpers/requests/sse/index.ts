@@ -1,4 +1,6 @@
-import { type ParsedEvent, createParser } from 'eventsource-parser'
+import { createParser } from 'eventsource-parser'
+
+import type { EventSourceMessage } from 'eventsource-parser'
 
 import { streamAsyncIterable } from './stream-async-iterable'
 
@@ -13,7 +15,7 @@ export interface IFetchSSEOptions extends RequestInit {
    * 可在消息反序列化之前处理原始 message 字符串
    */
   beforeParseEvent?: (messageStr: string) => void | Promise<void>
-  onEvent: (parsedEvent: ParsedEvent) => void
+  onEvent: (parsedEvent: EventSourceMessage) => void
 }
 
 /** ref: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events */
@@ -25,10 +27,8 @@ export async function fetchSSE(resource: string, options: IFetchSSEOptions) {
     ...fetchOptions
   } = options
 
-  const parser = createParser((parseEvent) => {
-    if (parseEvent.type === 'event') {
-      onEvent(parseEvent)
-    }
+  const parser = createParser({
+    onEvent,
   })
 
   try {
@@ -44,8 +44,7 @@ export async function fetchSSE(resource: string, options: IFetchSSEOptions) {
       await beforeParseEvent?.(str)
       parser.feed(str)
     }
-  }
-  catch (err) {
+  } catch (err) {
     if (err instanceof DOMException && err.name === 'AbortError') {
       // Do nothing
       return

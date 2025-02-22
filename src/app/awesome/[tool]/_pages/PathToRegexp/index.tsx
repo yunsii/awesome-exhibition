@@ -1,16 +1,14 @@
 'use client'
 
-import React from 'react'
+import { getErrorMessage } from '@/helpers/error'
+import { toRegExpString } from '@/helpers/regexp'
 import { Button, Divider, Form, Input, Radio, Switch } from 'antd'
 import { match, pathToRegexp } from 'path-to-regexp'
-
-import { DECODE_OPTIONS, ENCODE_OPTIONS } from './contants'
+import React from 'react'
 
 import type { TupleToUnion } from 'type-fest'
-import type { Key } from 'path-to-regexp'
 
-import { toRegExpString } from '@/helpers/regexp'
-import { getErrorMessage } from '@/helpers/error'
+import { DECODE_OPTIONS, ENCODE_OPTIONS } from './constants'
 
 export interface IPathToRegExpFormValues {
   path: string
@@ -138,52 +136,48 @@ const PathToRegExp: React.FC<PathToRegExpProps> = () => {
                 internalEncode = encodeURIComponent
               }
 
-              const keys: Key[] = []
-
               let regexp: RegExp
 
               try {
-                regexp = pathToRegexp(path, keys, {
+                const { regexp, keys } = pathToRegexp(path, {
                   ...restOptions,
-                  encode: internalEncode,
+                  encodePath: internalEncode,
                 })
-              }
-              catch (err) {
+                const execResult = regexp.exec(testPath || '')
+                return (
+                  <div>
+                    <h2 className='font-bold'>
+                      <code>pathToRegexp(path)</code>
+                    </h2>
+                    <div className='flex gap-x-2'>
+                      <em>Literal notation</em>
+                      <code>{toRegExpString(regexp)}</code>
+                    </div>
+                    <div className='flex gap-x-2'>
+                      <em>Keys</em>
+                      <code className='whitespace-pre'>
+                        {JSON.stringify(keys, null, 2)}
+                      </code>
+                    </div>
+                    {testPath && (
+                      <div className='flex gap-x-2'>
+                        <em>Exec result</em>
+                        {execResult === null
+                          ? (
+                              <code>null</code>
+                            )
+                          : (
+                              <code className='whitespace-pre'>
+                                {JSON.stringify(execResult)}
+                              </code>
+                            )}
+                      </div>
+                    )}
+                  </div>
+                )
+              } catch (err) {
                 return <div className='text-red-500'>{getErrorMessage(err)}</div>
               }
-
-              const execResult = regexp.exec(testPath || '')
-              return (
-                <div>
-                  <h2 className='font-bold'>
-                    <code>pathToRegexp(path)</code>
-                  </h2>
-                  <div className='flex gap-x-2'>
-                    <em>Literal notation</em>
-                    <code>{toRegExpString(regexp)}</code>
-                  </div>
-                  <div className='flex gap-x-2'>
-                    <em>Keys</em>
-                    <code className='whitespace-pre'>
-                      {JSON.stringify(keys, null, 2)}
-                    </code>
-                  </div>
-                  {testPath && (
-                    <div className='flex gap-x-2'>
-                      <em>Exec result</em>
-                      {execResult === null
-                        ? (
-                          <code>null</code>
-                          )
-                        : (
-                          <code className='whitespace-pre'>
-                            {JSON.stringify(execResult)}
-                          </code>
-                          )}
-                    </div>
-                  )}
-                </div>
-              )
             }}
           </Form.Item>
           <Form.Item<IPathToRegExpFormValues> noStyle shouldUpdate>
@@ -215,7 +209,7 @@ const PathToRegExp: React.FC<PathToRegExpProps> = () => {
 
               const urlMatch = match(path, {
                 ...restOptions,
-                encode: internalEncode,
+                encodePath: internalEncode,
                 decode: internalDecode,
               })
               return (

@@ -1,27 +1,27 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import { useUpdate } from 'ahooks'
 import {
   Button,
   Divider,
   Form,
   Input,
   InputNumber,
+  message,
   Radio,
   Select,
   Space,
   Switch,
-  message,
 } from 'antd'
 import cookie from 'cookie'
-import { useUpdate } from 'ahooks'
+import React, { useRef, useState } from 'react'
+
+import type { InputRef } from 'antd'
+import type { TupleToUnion } from 'type-fest'
 
 import { COOKIE_PREFIX, PRESERVED_PREFIXES } from './constants'
 
-import type { TupleToUnion } from 'type-fest'
-import type { InputRef } from 'antd'
-
-export interface ICookieFormValues extends cookie.CookieSerializeOptions {
+export interface ICookieFormValues extends cookie.SerializeOptions {
   name: string
   value: string
 
@@ -71,8 +71,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
       console.log('[💎 Server] cookieSerialized:', cookieSerialized)
       const axios = (await import('axios')).default
       axios.post('/api/cookie', cookieSerialized)
-    }
-    else {
+    } else {
       // eslint-disable-next-line no-console
       console.log('[📍 Client] cookieSerialized:', cookieSerialized)
       document.cookie = cookieSerialized

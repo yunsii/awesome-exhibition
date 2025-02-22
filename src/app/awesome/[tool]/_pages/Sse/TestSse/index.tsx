@@ -1,7 +1,6 @@
+import { fetchSSE } from '@/helpers/requests/sse'
 import { Button } from 'antd'
 import React, { useRef, useState } from 'react'
-
-import { fetchSSE } from '@/helpers/requests/sse'
 
 export interface TestSseProps {
   name: string

@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       '@ant-design/cssinjs':
-        specifier: ^1.21.1
+        specifier: ^1.23.0
         version: 1.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tw-classed/react':
-        specifier: ^1.7.0
+        specifier: ^1.8.0
         version: 1.8.0(react@18.3.1)
       '@types/node':
         specifier: 20.6.1
@@ -24,47 +24,47 @@ importers:
         specifier: 18.2.7
         version: 18.2.7
       '@webcontainer/api':
-        specifier: ^1.1.8
+        specifier: ^1.5.1
         version: 1.5.1
       ahooks:
-        specifier: ^3.8.1
+        specifier: ^3.8.4
         version: 3.8.4(react@18.3.1)
       antd:
-        specifier: ^5.21.5
+        specifier: ^5.24.1
         version: 5.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       autoprefixer:
         specifier: 10.4.15
-        version: 10.4.15(postcss@8.4.29)
+        version: 10.4.15(postcss@8.5.3)
       axios:
-        specifier: ^1.6.3
+        specifier: ^1.7.9
         version: 1.7.9
       cookie:
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^1.0.2
+        version: 1.0.2
       dedent:
-        specifier: ^1.5.1
+        specifier: ^1.5.3
         version: 1.5.3
       eventsource-parser:
-        specifier: ^1.1.2
-        version: 1.1.2
+        specifier: ^3.0.0
+        version: 3.0.0
       fasttext.wasm.js:
         specifier: 1.0.0
         version: 1.0.0
       ml-matrix:
-        specifier: ^6.11.1
+        specifier: ^6.12.0
         version: 6.12.0
       next:
-        specifier: 15.1.7
+        specifier: ^15.1.7
         version: 15.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.0)
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
       path-to-regexp:
-        specifier: ^6.2.1
-        version: 6.3.0
+        specifier: ^8.2.0
+        version: 8.2.0
       postcss:
-        specifier: 8.4.29
-        version: 8.4.29
+        specifier: 8.5.3
+        version: 8.5.3
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -134,7 +134,7 @@ importers:
         version: 15.4.3
       postcss-antd-fixes:
         specifier: ^0.2.0
-        version: 0.2.0(postcss@8.4.29)
+        version: 0.2.0(postcss@8.5.3)
       prettier:
         specifier: ^3.0.3
         version: 3.5.1
@@ -1366,9 +1366,9 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
-    engines: {node: '>= 0.6'}
+  cookie@1.0.2:
+    resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
+    engines: {node: '>=18'}
 
   copy-to-clipboard@3.3.3:
     resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
@@ -1896,9 +1896,9 @@ packages:
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
 
-  eventsource-parser@1.1.2:
-    resolution: {integrity: sha512-v0eOBUbiaFojBu2s2NPBfYUoRR9GjcDNvCXVaqEf5vVfpIAh9f8RCo4vXTP8c63QRKCFwoLpMpTdPwwhEKVgzA==}
-    engines: {node: '>=14.18'}
+  eventsource-parser@3.0.0:
+    resolution: {integrity: sha512-T1C0XCUimhxVQzW4zFipdx0SficT651NnkR0ZSH3yQwh+mFMdLfgjABVi4YtMTtaL4s168593DaoaRLMqryavA==}
+    engines: {node: '>=18.0.0'}
 
   execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
@@ -2876,8 +2876,9 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
-  path-to-regexp@6.3.0:
-    resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
+  path-to-regexp@8.2.0:
+    resolution: {integrity: sha512-TdrF7fW9Rphjq4RjrW0Kp2AW0Ahwu9sRGTkS6bvDi0SCwZlEZYmcfDbEsTz8RVk0EHIS/Vd1bv3JhG+1xZuAyQ==}
+    engines: {node: '>=16'}
 
   pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
@@ -3000,10 +3001,6 @@ packages:
 
   postcss@8.1.10:
     resolution: {integrity: sha512-iBXEV5VTTYaRRdxiFYzTtuv2lGMQBExqkZKSzkJe+Fl6rvQrA/49UVGKqB+LG54hpW/TtDBMGds8j33GFNW7pg==}
-    engines: {node: ^10 || ^12 || >=14}
-
-  postcss@8.4.29:
-    resolution: {integrity: sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==}
     engines: {node: ^10 || ^12 || >=14}
 
   postcss@8.4.31:
@@ -5120,14 +5117,14 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  autoprefixer@10.4.15(postcss@8.4.29):
+  autoprefixer@10.4.15(postcss@8.5.3):
     dependencies:
       browserslist: 4.24.4
       caniuse-lite: 1.0.30001700
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.4.29
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
   axios@1.7.9:
@@ -5361,7 +5358,7 @@ snapshots:
       meow: 12.1.1
       split2: 4.2.0
 
-  cookie@0.6.0: {}
+  cookie@1.0.2: {}
 
   copy-to-clipboard@3.3.3:
     dependencies:
@@ -6012,7 +6009,7 @@ snapshots:
 
   eventemitter3@5.0.1: {}
 
-  eventsource-parser@1.1.2: {}
+  eventsource-parser@3.0.0: {}
 
   execa@8.0.1:
     dependencies:
@@ -7158,7 +7155,7 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
-  path-to-regexp@6.3.0: {}
+  path-to-regexp@8.2.0: {}
 
   pathe@1.1.2: {}
 
@@ -7186,28 +7183,28 @@ snapshots:
 
   pluralize@8.0.0: {}
 
-  postcss-antd-fixes@0.2.0(postcss@8.4.29):
+  postcss-antd-fixes@0.2.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.29
+      postcss: 8.5.3
 
-  postcss-import@15.1.0(postcss@8.4.29):
+  postcss-import@15.1.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.29
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.10
 
-  postcss-js@4.0.1(postcss@8.4.29):
+  postcss-js@4.0.1(postcss@8.5.3):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.29
+      postcss: 8.5.3
 
-  postcss-load-config@4.0.2(postcss@8.4.29):
+  postcss-load-config@4.0.2(postcss@8.5.3):
     dependencies:
       lilconfig: 3.1.3
       yaml: 2.7.0
     optionalDependencies:
-      postcss: 8.4.29
+      postcss: 8.5.3
 
   postcss-modules-extract-imports@3.1.0(postcss@8.1.10):
     dependencies:
@@ -7242,9 +7239,9 @@ snapshots:
       postcss-modules-values: 4.0.0(postcss@8.1.10)
       string-hash: 1.1.3
 
-  postcss-nested@6.2.0(postcss@8.4.29):
+  postcss-nested@6.2.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.29
+      postcss: 8.5.3
       postcss-selector-parser: 6.1.2
 
   postcss-selector-parser@6.0.4:
@@ -7272,12 +7269,6 @@ snapshots:
       nanoid: 3.3.8
       source-map: 0.6.1
       vfile-location: 3.2.0
-
-  postcss@8.4.29:
-    dependencies:
-      nanoid: 3.3.8
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
 
   postcss@8.4.31:
     dependencies:
@@ -8001,11 +7992,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.4.29
-      postcss-import: 15.1.0(postcss@8.4.29)
-      postcss-js: 4.0.1(postcss@8.4.29)
-      postcss-load-config: 4.0.2(postcss@8.4.29)
-      postcss-nested: 6.2.0(postcss@8.4.29)
+      postcss: 8.5.3
+      postcss-import: 15.1.0(postcss@8.5.3)
+      postcss-js: 4.0.1(postcss@8.5.3)
+      postcss-load-config: 4.0.2(postcss@8.5.3)
+      postcss-nested: 6.2.0(postcss@8.5.3)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.10
       sucrase: 3.35.0
