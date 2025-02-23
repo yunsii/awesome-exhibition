@@ -14,6 +14,13 @@ const nextConfig: NextConfig = {
       fs: false,
     }
 
+    // ref: https://huggingface.co/docs/transformers.js/tutorials/next#step-2-install-and-configure-transformersjs
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'sharp$': false,
+      'onnxruntime-node$': false,
+    }
+
     config.plugins.push(
       polishTaggedTemplates({
         clsTags: ['cls', 'tw'],

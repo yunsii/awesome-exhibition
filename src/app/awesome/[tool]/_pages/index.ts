@@ -18,6 +18,9 @@ const PromiseAllConditional = dynamic(() => import('./PromiseAllConditional'), {
 const Sse = dynamic(() => import('./Sse'), {
   ssr: false,
 })
+const TransformersJs = dynamic(() => import('./TransformersJs'), {
+  ssr: false,
+})
 
 const pages = {
   [AwesomeTool.Cookies]: Cookies,
@@ -27,6 +30,7 @@ const pages = {
   [AwesomeTool.PathToRegexp]: PathToRegexp,
   [AwesomeTool.PromiseAllConditional]: PromiseAllConditional,
   [AwesomeTool.Sse]: Sse,
+  [AwesomeTool.TransformersJs]: TransformersJs,
 }
 
 export default pages

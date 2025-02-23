@@ -6,4 +6,5 @@ export enum AwesomeTool {
   PathToRegexp = 'path-to-regexp',
   PromiseAllConditional = 'promise-all-conditionally',
   Sse = 'sse',
+  TransformersJs = 'transformers.js',
 }

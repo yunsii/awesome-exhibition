@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
+    "@huggingface/transformers": "^3.3.3",
     "@tw-classed/react": "^1.8.0",
     "@webcontainer/api": "^1.5.1",
     "ahooks": "^3.8.4",
