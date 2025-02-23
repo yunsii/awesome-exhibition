@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+@plugin '../../tailwind-plugins/dynamic-icons.ts';
+
+@layer theme, base, antd, components, utilities;

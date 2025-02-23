@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 import AntdRegistry from './_components/AntdRegistry'
 import AppLayout from './_components/AppLayout'
 
-import './globals.scss'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -142,8 +142,8 @@ importers:
         specifier: 4.0.8
         version: 4.0.8
       tailwindcss-plugin-iconify:
-        specifier: ^1.4.5
-        version: 1.5.0(tailwindcss@4.0.8)
+        specifier: ^1.5.1
+        version: 1.5.1(tailwindcss@4.0.8)
       type-fest:
         specifier: ^4.9.0
         version: 4.35.0
@@ -3703,8 +3703,8 @@ packages:
   tailwind-merge@3.0.1:
     resolution: {integrity: sha512-AvzE8FmSoXC7nC+oU5GlQJbip2UO7tmOhOfQyOmPhrStOGXHU08j8mZEHZ4BmCqY5dWTCo4ClWkNyRNx1wpT0g==}
 
-  tailwindcss-plugin-iconify@1.5.0:
-    resolution: {integrity: sha512-vGj3ZZLzOI750x8i9RlzBxDxSKC2o35SkqtYCvWVZ4fRCp1F+F12CTAWse7ZKphuvgt6BD/T8AYa4XDt/VNT9w==}
+  tailwindcss-plugin-iconify@1.5.1:
+    resolution: {integrity: sha512-2khJHxTCfbhd+3ytNZ/x+YCKW4shxu5AZXy/Au1IfwTnip2PhxGZe0gVy5civxTYfpwU/gfP/BwsgzRkrBOjkg==}
     peerDependencies:
       tailwindcss: '>=3'
 
@@ -8105,7 +8105,7 @@ snapshots:
 
   tailwind-merge@3.0.1: {}
 
-  tailwindcss-plugin-iconify@1.5.0(tailwindcss@4.0.8):
+  tailwindcss-plugin-iconify@1.5.1(tailwindcss@4.0.8):
     dependencies:
       '@iconify/tools': 4.1.1
       '@iconify/types': 2.0.0
