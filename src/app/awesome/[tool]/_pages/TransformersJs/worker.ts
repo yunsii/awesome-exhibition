@@ -14,6 +14,9 @@ class PipelineSingleton {
 
   static async getInstance(progressCallback: ProgressCallback) {
     if (this.instance === null) {
+      // ref: https://github.com/huggingface/transformers.js/issues/1299
+      // eslint-disable-next-line ts/ban-ts-comment
+      // @ts-ignore
       this.instance = pipeline(this.task, this.model, { progress_callback: progressCallback })
     }
     return this.instance
