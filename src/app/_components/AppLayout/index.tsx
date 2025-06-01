@@ -1,13 +1,12 @@
 'use client'
 
+import { getToolHref } from '@/helpers/router'
 import { Button, Layout, Menu } from 'antd'
-import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import React from 'react'
 
 import { AwesomeTool } from '../../../constants/tools'
-
-import { getToolHref } from '@/helpers/router'
 
 export interface AppLayoutProps {
   children?: React.ReactNode
@@ -47,6 +46,10 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                   {
                     key: '/flex-1-scrollbar',
                     label: <Link href='/flex-1-scrollbar'>Flex 1 with Scrollbar</Link>,
+                  },
+                  {
+                    key: '/konva',
+                    label: <Link href='/konva'>Konva</Link>,
                   },
                   {
                     key: '/awesome-tools',

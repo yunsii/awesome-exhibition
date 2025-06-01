@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
       }),
     )
 
+    config.externals = [...config.externals, { canvas: 'canvas' }] // required to make Konva & react-konva work
+
     return config
   },
   // ref: https://webcontainers.io/guides/configuring-headers
