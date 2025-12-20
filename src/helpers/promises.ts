@@ -24,8 +24,7 @@ function throwErrorHelper<E extends Error>(
       try {
         const result = await task(..._arguments)
         return result
-      }
-      catch (err) {
+      } catch (err) {
         internalOnRawError?.(err)
         if (err instanceof CustomError) {
           throw err
@@ -74,8 +73,7 @@ function fallbackHelper(
       try {
         const result = await task(..._arguments)
         return result
-      }
-      catch (err) {
+      } catch (err) {
         internalOnRawError?.(err)
         return defaultValue
       }

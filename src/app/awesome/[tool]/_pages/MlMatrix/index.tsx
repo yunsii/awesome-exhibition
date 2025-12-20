@@ -1,11 +1,10 @@
 'use client'
 
-import { Button, Input } from 'antd'
-import { useState } from 'react'
-import { Matrix, inverse } from 'ml-matrix'
-
 import ToolTitle from '@/app/_components/ToolTitle'
 import { useToolName } from '@/hooks/tools'
+import { Button, Input } from 'antd'
+import { inverse, Matrix } from 'ml-matrix'
+import { useState } from 'react'
 
 function dump(matrix: number[][]) {
   return matrix

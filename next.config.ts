@@ -1,5 +1,3 @@
-import polishTaggedTemplates from 'unplugin-polish-tagged-templates/webpack'
-
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
@@ -7,29 +5,16 @@ const nextConfig: NextConfig = {
   sassOptions: {
     silenceDeprecations: ['legacy-js-api'],
   },
-  webpack: (config) => {
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
+  // Turbopack configuration for Next.js 16+
+  // Note: Some webpack config options are not yet supported in Turbopack
+  // See: https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack
+  turbopack: {
+    resolveAlias: {
       // ref: https://stackoverflow.com/a/70995196/8335317
-      fs: false,
-    }
-
-    // ref: https://huggingface.co/docs/transformers.js/tutorials/next#step-2-install-and-configure-transformersjs
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'sharp$': false,
-      'onnxruntime-node$': false,
-    }
-
-    config.plugins.push(
-      polishTaggedTemplates({
-        clsTags: ['cls', 'tw'],
-      }),
-    )
-
-    config.externals = [...config.externals, { canvas: 'canvas' }] // required to make Konva & react-konva work
-
-    return config
+      'fs/promises': { browser: './empty.ts' },
+      'fs': { browser: './empty.ts' },
+      'url': { browser: './empty.ts' },
+    },
   },
   // ref: https://webcontainers.io/guides/configuring-headers
   async headers() {

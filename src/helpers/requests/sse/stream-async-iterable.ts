@@ -8,8 +8,7 @@ export async function* streamAsyncIterable(stream: ReadableStream) {
       }
       yield value
     }
-  }
-  finally {
+  } finally {
     reader.releaseLock()
   }
 }

@@ -8,7 +8,7 @@ export default function Home() {
   const [ready, setReady] = useState<boolean | null>(null)
 
   // Create a reference to the worker object.
-  const worker = useRef<Worker>()
+  const worker = useRef<Worker | null>(null)
 
   // We use the `useEffect` hook to set up the worker as soon as the `App` component is mounted.
   useEffect(() => {

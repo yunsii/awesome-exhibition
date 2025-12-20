@@ -1,11 +1,10 @@
 'use client'
 
 /* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react'
-import { Alert, Button, Input, Spin } from 'antd'
-
-import { NotFoundError, got } from '@/helpers/mock'
+import { got, NotFoundError } from '@/helpers/mock'
 import { pConditional } from '@/helpers/promises'
+import { Alert, Button, Input, Spin } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
 
 const pThrowError = pConditional.throwErrorHelper(Error, console.log)
 
@@ -70,8 +69,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
       ])
       setResults(results)
       setError(null)
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err)
       setResults([])
       setError(err)

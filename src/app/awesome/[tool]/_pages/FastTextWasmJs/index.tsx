@@ -1,12 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Alert, Form, Input } from 'antd'
-import { useDebounceFn, useMount } from 'ahooks'
-import { getLIDModel } from 'fasttext.wasm.js/common'
-
-import { useToolName } from '@/hooks/tools'
 import ToolTitle from '@/app/_components/ToolTitle'
+import { useToolName } from '@/hooks/tools'
+import { useDebounceFn, useMount } from 'ahooks'
+import { Alert, Form, Input } from 'antd'
+import { getLIDModel } from 'fasttext.wasm.js/common'
+import React, { useState } from 'react'
 
 interface Values {
   input: string
@@ -62,19 +61,19 @@ const FastTextWasmJs: React.FC = () => {
         message={
           identified
             ? (
-              <div>
-                <span>Identify Lang:</span>
-                {' '}
-                <span className='font-bold'>{lang?.toUpperCase()}</span>
-                {' '}
-                with
-                possibility
-                {' '}
-                {possibility}
-              </div>
+                <div>
+                  <span>Identify Lang:</span>
+                  {' '}
+                  <span className='font-bold'>{lang?.toUpperCase()}</span>
+                  {' '}
+                  with
+                  possibility
+                  {' '}
+                  {possibility}
+                </div>
               )
             : (
-              <div>Identifying...</div>
+                <div>Identifying...</div>
               )
         }
         type={identified ? 'success' : 'info'}

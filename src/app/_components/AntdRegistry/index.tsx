@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
-import { StyleProvider, createCache, extractStyle } from '@ant-design/cssinjs'
+import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'
 import { useServerInsertedHTML } from 'next/navigation'
+import React from 'react'
 
 import type Entity from '@ant-design/cssinjs/es/Cache'
 
@@ -13,7 +13,7 @@ function StyledComponentsRegistry({
 }) {
   const cache = React.useMemo<Entity>(() => createCache(), [])
   useServerInsertedHTML(() => (
-    // eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
+
     <style
       id='antd'
       dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}
