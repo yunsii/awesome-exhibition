@@ -1,14 +1,13 @@
 'use client'
 
-import { Input } from 'antd'
-import { useAsyncEffect, useDebounceEffect, useUnmount } from 'ahooks'
-import { useState } from 'react'
-
-import { files } from './WebContainerInstance/files'
-import { WebContainerInstance } from './WebContainerInstance'
-
 import ToolTitle from '@/app/_components/ToolTitle'
 import { useToolName } from '@/hooks/tools'
+import { useAsyncEffect, useDebounceEffect, useUnmount } from 'ahooks'
+import { Input } from 'antd'
+import { useState } from 'react'
+
+import { WebContainerInstance } from './WebContainerInstance'
+import { files } from './WebContainerInstance/files'
 
 const WebContainerRuntime: React.FC = () => {
   const toolName = useToolName()
@@ -25,14 +24,19 @@ const WebContainerRuntime: React.FC = () => {
   })
 
   useAsyncEffect(async () => {
-    setOutput('Loading...')
-    await WebContainerInstance.getInstance()
+    try {
+      setOutput('Loading...')
+      await WebContainerInstance.getInstance()
 
-    const exitCode = await WebContainerInstance.installDependencies()
-    if (exitCode !== 0) {
-      throw new Error('Installation failed')
+      const exitCode = await WebContainerInstance.installDependencies()
+      if (exitCode !== 0) {
+        throw new Error('Installation failed')
+      }
+      setReady(true)
+    } catch (error) {
+      console.error('Error initializing WebContainer:', error)
+      setOutput(`Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}`)
     }
-    setReady(true)
   }, [])
 
   useDebounceEffect(() => {

@@ -8,14 +8,34 @@ export interface RunScriptOptions {
 }
 
 let BOOTED_WEB_CONTAINER_INSTANCE: WebContainer
+let BOOTING_PROMISE: Promise<WebContainer> | null = null
 
 export class WebContainerInstance {
   static async getInstance() {
-    if (!BOOTED_WEB_CONTAINER_INSTANCE) {
-      BOOTED_WEB_CONTAINER_INSTANCE = await WebContainer.boot()
-      await BOOTED_WEB_CONTAINER_INSTANCE.mount(files)
+    if (BOOTED_WEB_CONTAINER_INSTANCE) {
+      return BOOTED_WEB_CONTAINER_INSTANCE
     }
-    return BOOTED_WEB_CONTAINER_INSTANCE
+
+    // If already booting, wait for it
+    if (BOOTING_PROMISE) {
+      return BOOTING_PROMISE
+    }
+
+    // Start booting
+    BOOTING_PROMISE = (async () => {
+      try {
+        BOOTED_WEB_CONTAINER_INSTANCE = await WebContainer.boot()
+        await BOOTED_WEB_CONTAINER_INSTANCE.mount(files)
+        return BOOTED_WEB_CONTAINER_INSTANCE
+      } catch (error) {
+        // Clear booting promise on error so retry is possible
+        BOOTING_PROMISE = null
+        console.error('Failed to boot WebContainer:', error)
+        throw error
+      }
+    })()
+
+    return BOOTING_PROMISE
   }
 
   static async installDependencies() {
