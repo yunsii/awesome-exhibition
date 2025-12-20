@@ -118,7 +118,7 @@ const PromiseAllConditionally: React.FC<IPromiseAllConditionallyProps> = () => {
         >
           <Select
             options={cookieNames.map((item) => ({ label: item, value: item }))}
-            dropdownRender={(menu) => (
+            popupRender={(menu) => (
               <>
                 {menu}
                 <Divider style={{ margin: '8px 0' }} />

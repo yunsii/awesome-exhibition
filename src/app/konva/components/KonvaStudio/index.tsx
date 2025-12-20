@@ -152,6 +152,11 @@ function KonvaStudio(props: KonvaStudioProps) {
             fill='red'
             shadowBlur={10}
             draggable
+            onDragEnd={(e) => {
+              e.target.to({
+                duration: 0.1,
+              })
+            }}
           />
           <Circle
             x={200}
@@ -159,6 +164,11 @@ function KonvaStudio(props: KonvaStudioProps) {
             radius={50}
             fill='green'
             draggable
+            onDragEnd={(e) => {
+              e.target.to({
+                duration: 0.1,
+              })
+            }}
           />
         </Layer>
       </Stage>

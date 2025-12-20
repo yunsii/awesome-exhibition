@@ -58,7 +58,7 @@ const FastTextWasmJs: React.FC = () => {
         </Form.Item>
       </Form>
       <Alert
-        message={
+        title={
           identified
             ? (
                 <div>

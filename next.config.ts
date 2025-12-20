@@ -35,9 +35,6 @@ const nextConfig: NextConfig = {
     ]
   },
   modularizeImports: {
-    'antd': {
-      transform: 'antd/lib/{{ kebabCase member }}',
-    },
     'lodash-es': {
       transform: 'lodash-es/{{member}}',
     },
