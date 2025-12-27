@@ -1,3 +1,4 @@
+import { error } from 'node:console'
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
@@ -142,7 +143,10 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
     logger.debug(`Finished processing resource: ${resource}`)
     return callback(null, s.toString(), map)
   } catch (err) {
-    logger.error(`Error processing ${resource}:`, err)
-    return callback(err)
+    if (error instanceof Error) {
+      return callback(error)
+    } else {
+      return callback(new Error(String(err)))
+    }
   }
 }

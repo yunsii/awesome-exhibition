@@ -12,7 +12,8 @@
     "lint": "eslint --flag unstable_ts_config .",
     "lint:fix": "eslint --flag unstable_ts_config --fix .",
     "test:auto-import": "pnpm -C packages/auto-import-loader test",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
