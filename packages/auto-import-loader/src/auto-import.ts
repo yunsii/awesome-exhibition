@@ -143,7 +143,6 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
     return callback(null, s.toString(), map)
   } catch (err) {
     logger.error(`Error processing ${resource}:`, err)
-    logger.debug(`Finished processing resource: ${resource}`)
     return callback(err)
   }
 }
