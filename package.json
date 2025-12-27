@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --flag unstable_ts_config .",
-    "lint:fix": "eslint --flag unstable_ts_config --fix ."
+    "lint:fix": "eslint --flag unstable_ts_config --fix .",
+    "test:auto-import": "pnpm -C packages/auto-import-loader test",
+    "test:unit": "vitest"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
@@ -48,6 +50,7 @@
     "@types/node": "20.6.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
+    "auto-import-loader": "workspace:*",
     "eslint": "9.28.0",
     "eslint-plugin-format": "^1.0.1",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -63,7 +66,8 @@
     "tailwindcss-plugin-iconify": "^1.5.1",
     "type-fest": "^4.41.0",
     "typescript": "5.8.3",
-    "unplugin-polish-tagged-templates": "0.2.1"
+    "unplugin-polish-tagged-templates": "0.2.1",
+    "vitest": "^4.0.16"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

@@ -1,6 +1,5 @@
 'use client'
 
-import ToolTitle from '@/app/_components/ToolTitle'
 import { useToolName } from '@/hooks/tools'
 import { useDebounceFn, useMount } from 'ahooks'
 import { Alert, Form, Input } from 'antd'

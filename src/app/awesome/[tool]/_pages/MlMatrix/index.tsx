@@ -1,6 +1,5 @@
 'use client'
 
-import ToolTitle from '@/app/_components/ToolTitle'
 import { useToolName } from '@/hooks/tools'
 import { Button, Input } from 'antd'
 import { inverse, Matrix } from 'ml-matrix'

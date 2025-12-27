@@ -15,6 +15,24 @@ const nextConfig: NextConfig = {
       'fs': { browser: './empty.ts' },
       'url': { browser: './empty.ts' },
     },
+    rules: {
+      '*.{js,jsx,ts,tsx}': {
+        condition: { not: 'foreign' },
+        // Use the packaged auto-import loader (ESM build) and enable ToolTitle auto-import
+        loaders: [
+          {
+            loader: 'auto-import-loader',
+            options: {
+              imports: [
+                { '@/app/_components/ToolTitle': [['default', 'ToolTitle']] },
+              ],
+              dts: true,
+              logLevel: 4,
+            },
+          },
+        ],
+      },
+    },
   },
   // ref: https://webcontainers.io/guides/configuring-headers
   async headers() {
