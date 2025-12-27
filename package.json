@@ -4,7 +4,8 @@
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "scripts": {
-    "prepare": "husky",
+    "build:deps": "pnpm --filter auto-import-loader run build",
+    "prepare": "husky && pnpm run build:deps",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
