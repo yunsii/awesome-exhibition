@@ -1,8 +1,7 @@
 {
   "name": "auto-import-loader",
   "type": "module",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.0",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
