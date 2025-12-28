@@ -1,5 +1,5 @@
 {
-  "name": "auto-import-loader",
+  "name": "auto-import-x-loader",
   "type": "module",
   "version": "0.0.0",
   "main": "dist/index.mjs",
