@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "scripts": {
-    "build:deps": "pnpm --filter auto-import-loader run build",
+    "build:deps": "pnpm --filter ./packages/* run build",
     "prepare": "husky && pnpm run build:deps",
     "dev": "next dev",
     "build": "next build",
@@ -56,7 +56,7 @@
     "@types/node": "20.6.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
-    "auto-import-loader": "workspace:*",
+    "auto-import-x-loader": "workspace:*",
     "eslint": "9.28.0",
     "eslint-plugin-format": "^1.0.1",
     "eslint-plugin-react-hooks": "^5.2.0",

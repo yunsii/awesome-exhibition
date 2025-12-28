@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
         // Use the packaged auto-import loader (ESM build) and enable ToolTitle auto-import
         loaders: [
           {
-            loader: 'auto-import-loader',
+            loader: 'auto-import-x-loader',
             options: {
               imports: [
                 { '@/app/_components/ToolTitle': [['default', 'ToolTitle']] },
