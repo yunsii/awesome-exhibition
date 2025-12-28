@@ -1,4 +1,3 @@
-import { error } from 'node:console'
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
@@ -107,6 +106,9 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
 
     logger.info(`Injected imports for ${resource}`)
 
+    const map = s.generateMap({ source: resource, includeContent: true, hires: true })
+    logger.debug(`Finished processing resource: ${resource}`)
+
     // optionally emit generated .d.ts once
     if (options.dts) {
       const filename = options.dts === true ? 'auto-imports.d.ts' : String(options.dts)
@@ -139,12 +141,10 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
       }
     }
 
-    const map = s.generateMap({ source: resource, includeContent: true, hires: true })
-    logger.debug(`Finished processing resource: ${resource}`)
     return callback(null, s.toString(), map)
   } catch (err) {
-    if (error instanceof Error) {
-      return callback(error)
+    if (err instanceof Error) {
+      return callback(err)
     } else {
       return callback(new Error(String(err)))
     }
