@@ -2,6 +2,7 @@
   "name": "auto-import-x-loader",
   "type": "module",
   "version": "0.0.1",
+  "description": "A local webpack/Turbopack loader that injects auto-imports using `unimport`",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
