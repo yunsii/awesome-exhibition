@@ -77,39 +77,12 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
       imports: await flattenImports(options.imports || []),
       dirs: options.dirs || [],
       presets: options.presets || [],
+      injectAtEnd: true,
     })
 
     await unimport.init()
 
-    // Transform JSX/TSX to JS/TS if needed
-    let code = source
-    const isJSX = resource.endsWith('.tsx') || resource.endsWith('.jsx')
-    if (isJSX) {
-      const result = await transform(resource, source, {
-        lang: resource.endsWith('.tsx') ? 'tsx' : 'jsx',
-        jsx: { runtime: 'automatic' },
-        sourcemap: false, // For simplicity, disable sourcemap for now
-      })
-      code = result.code
-    }
-
-    let s = new MagicString(code)
-
-    // core transform: inject imports into the MagicString
-    const result = await unimport.injectImports(s, resource)
-    s = result.s
-
-    // if nothing changed, return original content
-    if (!s.hasChanged()) {
-      return callback(null, source)
-    }
-
-    logger.info(`Injected imports for ${resource}`)
-
-    const map = s.generateMap({ source: resource, includeContent: true, hires: true })
-    logger.debug(`Finished processing resource: ${resource}`)
-
-    // optionally emit generated .d.ts once
+    // optionally emit generated .d.ts once (only if no changes, but to match original, run always)
     if (options.dts) {
       const filename = options.dts === true ? 'auto-imports.d.ts' : String(options.dts)
       if (!emittedDts.has(filename)) {
@@ -141,7 +114,66 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
       }
     }
 
-    return callback(null, s.toString(), map)
+    // Transform JSX/TSX to JS/TS if needed
+    let analysisCode = source
+    const isJSX = resource.endsWith('.tsx') || resource.endsWith('.jsx')
+    if (isJSX) {
+      const result = await transform(resource, source, {
+        lang: resource.endsWith('.tsx') ? 'tsx' : 'jsx',
+        // 仅供分析代码 imports 使用，故不需要完整转换
+        jsx: { runtime: 'classic' },
+        sourcemap: false, // For simplicity, disable sourcemap for now
+      })
+      analysisCode = result.code
+    }
+
+    let s = new MagicString(analysisCode)
+
+    // core transform: inject imports into the MagicString
+    const result = await unimport.injectImports(s, resource)
+    s = result.s
+
+    // Extract the injected imports block from the analysis code
+    const extractImportsBlock = (code: string): { block: string, start: number, end: number } | null => {
+      // Find all import lines (allowing leading whitespace)
+      const importRegex = /^\s*import\s.*$/gm
+      const matches = Array.from(code.matchAll(importRegex))
+      if (matches.length === 0) {
+        return null
+      }
+
+      // Get the start of the first import and end of the last import
+      const start = matches[0].index
+      const lastMatch = matches[matches.length - 1]
+      const end = lastMatch.index + lastMatch[0].length
+
+      const block = code.slice(start, end)
+      return { block, start, end }
+    }
+
+    const injectedImports = extractImportsBlock(s.toString())
+    const originalImports = extractImportsBlock(source)
+
+    // If there are changes in the imports block, apply to original source
+    if (injectedImports && (originalImports || injectedImports.block !== (originalImports?.block || ''))) {
+      const finalS = new MagicString(source)
+      if (originalImports) {
+        finalS.overwrite(originalImports.start, originalImports.end, injectedImports.block)
+      } else {
+        // No original imports, prepend the injected ones
+        finalS.prepend(`${injectedImports.block}\n`)
+      }
+
+      logger.info(`Injected imports for ${resource}`)
+
+      const map = finalS.generateMap({ source: resource, includeContent: true, hires: true })
+      logger.debug(`Finished processing resource: ${resource}`)
+
+      return callback(null, finalS.toString(), map)
+    }
+
+    // if nothing changed, return original content
+    return callback(null, source)
   } catch (err) {
     if (err instanceof Error) {
       return callback(err)

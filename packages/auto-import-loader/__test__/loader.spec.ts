@@ -25,19 +25,16 @@ describe('auto-import-loader', () => {
     const options = { imports: [{ name: 'ref', from: 'vue' }] }
     const src = `const count = ref(0)`
     const { code } = await runLoader(src, options)
-    expect(code).toContain("import { ref } from 'vue'")
-    expect(code).toContain('const count = ref(0)')
+    expect(code).toBe(`import { ref } from 'vue';
+const count = ref(0)`)
   })
 
   it('injects import at the end when injectAtEnd is true', async () => {
     const options = { imports: [{ name: 'foo', from: 'bar' }], injectAtEnd: true }
     const src = `console.log(foo)`
     const { code } = await runLoader(src, options)
-    // ensure the import exists and appears after the original code (accept single/double quotes)
-    const importRegex = /import\s+\{[^}]*foo[^}]*\}\s+from\s+['"][^'\"]*bar['"]/i
-    expect(importRegex.test(code)).toBe(true)
-    // we only require the import to be present for this test
-    expect(importRegex.test(code)).toBe(true)
+    expect(code).toBe(`import { foo } from 'bar';
+console.log(foo)`)
   })
 
   it('handles TSX/JSX style usage', async () => {
@@ -46,7 +43,6 @@ describe('auto-import-loader', () => {
     const { code } = await runLoader(src, options, '/test/file.jsx')
     expect(code).toContain("import { useState } from 'react'")
     expect(code).toContain('useState(0)')
-    expect(code).toContain('_jsx') // transformed JSX with automatic runtime
   })
 
   it('handles TSX files', async () => {
@@ -55,38 +51,38 @@ describe('auto-import-loader', () => {
     const { code } = await runLoader(src, options, '/test/file.tsx')
     expect(code).toContain("import { useState } from 'react'")
     expect(code).toContain('useState(0)')
-    expect(code).toContain('_jsx') // transformed JSX with automatic runtime
   })
 
   it('injects default import for used identifier', async () => {
     const options = { imports: [{ name: 'default', as: 'Vue', from: 'vue' }] }
     const src = `const app = Vue.createApp({})`
     const { code } = await runLoader(src, options)
-    expect(code).toContain("import Vue from 'vue'")
-    expect(code).toContain('const app = Vue.createApp({})')
+    expect(code).toBe(`import Vue from 'vue';
+const app = Vue.createApp({})`)
   })
 
   it('injects namespace import for used identifier', async () => {
     const options = { imports: [{ name: '*', as: 'React', from: 'react' }] }
     const src = `const element = React.createElement('div')`
     const { code } = await runLoader(src, options)
-    expect(code).toContain("import * as React from 'react'")
-    expect(code).toContain("const element = React.createElement('div')")
+    expect(code).toBe(`import * as React from 'react';
+const element = React.createElement('div')`)
   })
 
   it('uses presets', async () => {
     const options = { presets: ['vue'] }
     const src = `const count = ref(0)`
     const { code } = await runLoader(src, options)
-    expect(code).toContain("import { ref } from 'vue'")
+    expect(code).toBe(`import { ref } from 'vue';
+const count = ref(0)`)
   })
 
   it('handles TypeScript files', async () => {
     const options = { imports: [{ name: 'ref', from: 'vue' }] }
     const src = `const count: Ref<number> = ref(0)`
     const { code } = await runLoader(src, options, '/test/file.ts')
-    expect(code).toContain("import { ref } from 'vue'")
-    expect(code).toContain('const count: Ref<number> = ref(0)')
+    expect(code).toBe(`import { ref } from 'vue';
+const count: Ref<number> = ref(0)`)
   })
 
   it('does not inject when identifier is not used', async () => {
@@ -112,5 +108,53 @@ describe('auto-import-loader', () => {
     const src = `const count = 0`
     const { code } = await runLoader(src, options)
     expect(code).toBe(src)
+  })
+
+  it('generates sourcemap based on original source for JSX files', async () => {
+    const options = { imports: [{ name: 'useState', from: 'react' }] }
+    const src = `function Comp() { const [s, setS] = useState(0); return <div>{s}</div> }`
+    const { code, map } = await runLoader(src, options, '/test/file.jsx')
+    expect(code).toContain("import { useState } from 'react'")
+    expect(code).toContain('<div>{s}</div>') // original JSX preserved
+    expect(map).toBeDefined()
+    expect(map.sources).toContain('/test/file.jsx') // sourcemap points to original file
+  })
+
+  it('replaces imports block correctly with comments preserved', async () => {
+    const options = { imports: [{ name: 'ref', from: 'vue' }, { name: 'computed', from: 'vue' }] }
+    const src = `import 'existing'
+// comment
+import 'another'
+const count = ref(0)
+const doubled = computed(() => count * 2)`
+    const { code } = await runLoader(src, options)
+    expect(code).toBe(`import 'existing'
+// comment
+import 'another'
+
+import { ref, computed } from 'vue';
+const count = ref(0)
+const doubled = computed(() => count * 2)`)
+  })
+
+  it('handles non-consecutive imports in TSX files', async () => {
+    const options = { imports: [{ name: 'useState', from: 'react' }, { name: 'useEffect', from: 'react' }] }
+    const src = `'use client'
+import 'a'
+// bar
+import 'b'
+/** foo */
+import 'c'
+function App() { const [s] = useState(0); useEffect(() => {}, []); return <div>{s}</div> }`
+    const { code } = await runLoader(src, options, '/test/file.tsx')
+    expect(code).toBe(`'use client'
+import "a";
+// bar
+import "b";
+/** foo */
+import "c";
+
+import { useState, useEffect } from 'react';
+function App() { const [s] = useState(0); useEffect(() => {}, []); return <div>{s}</div> }`)
   })
 })
