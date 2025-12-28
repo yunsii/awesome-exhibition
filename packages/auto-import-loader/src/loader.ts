@@ -5,8 +5,8 @@ import type { LoaderContext } from 'webpack'
 import { generateAndEmitDts } from './dts-emitter'
 import { flattenImports } from './flatten-imports'
 import { injectImportsIntoSource } from './import-injector'
-import { transformJsxForAnalysis } from './jsx-transformer'
 import { logger } from './logger'
+import { transformForAnalysis } from './transformer'
 
 import type { LoaderOptions } from './types'
 
@@ -31,7 +31,7 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
 
     await generateAndEmitDts(unimport, options, this)
 
-    const analysisCode = await transformJsxForAnalysis(resource, source)
+    const analysisCode = await transformForAnalysis(resource, source)
 
     const injectResult = await injectImportsIntoSource(unimport, resource, source, analysisCode)
 

@@ -1,7 +1,9 @@
 import { transform } from 'oxc-transform'
 
-export async function transformJsxForAnalysis(resource: string, source: string): Promise<string> {
-  const isJSX = resource.endsWith('.tsx') || resource.endsWith('.jsx')
+import { detectIsJsxResource } from './helpers'
+
+export async function transformForAnalysis(resource: string, source: string): Promise<string> {
+  const isJSX = detectIsJsxResource(resource)
   if (!isJSX) {
     return source
   }
