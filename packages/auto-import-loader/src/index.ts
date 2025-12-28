@@ -1,1 +1,1 @@
-export { default } from './auto-import'
+export { default } from './loader'

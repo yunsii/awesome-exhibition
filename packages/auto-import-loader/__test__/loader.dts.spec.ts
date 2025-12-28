@@ -1,6 +1,6 @@
 import { describe, it, expect} from 'vitest'
 
-import loader from '../src/auto-import'
+import loader from '../src/loader'
 
 function runLoaderWithEmit(source: string, options = {}) {
   return new Promise<{ code: string; files: Record<string, string> }>((resolve, reject) => {

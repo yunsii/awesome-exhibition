@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import loader from '../src/auto-import'
+import loader from '../src/loader'
 
 function runLoader(source: string, options = {}, resourcePath = '/test/file.js') {
   return new Promise<{ code: string; map?: any }>((resolve, reject) => {
