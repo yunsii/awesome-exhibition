@@ -1,5 +1,11 @@
 # auto-import-loader
 
+## 0.0.2
+
+### Patch Changes
+
+- 🐛 fix: improve import injection and d.ts emission in auto-import-loader
+
 ## 0.0.1
 
 ### Patch Changes

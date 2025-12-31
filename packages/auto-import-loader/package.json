@@ -1,7 +1,7 @@
 {
   "name": "auto-import-x-loader",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A local webpack/Turbopack loader that injects auto-imports using `unimport`",
   "license": "MIT",
   "main": "dist/index.mjs",
