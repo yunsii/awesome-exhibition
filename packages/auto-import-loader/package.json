@@ -4,6 +4,11 @@
   "version": "0.0.2",
   "description": "A local webpack/Turbopack loader that injects auto-imports using `unimport`",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yunsii/awesome-exhibition",
+    "directory": "packages/auto-import-loader"
+  },
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
