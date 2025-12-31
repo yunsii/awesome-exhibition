@@ -3,8 +3,9 @@
 import { useToolName } from '@/hooks/tools'
 import { useDebounceFn, useMount } from 'ahooks'
 import { Alert, Form, Input } from 'antd'
-import { getLIDModel } from 'fasttext.wasm.js/common'
-import React, { useState } from 'react'
+import {
+  getLIDModel,
+} from 'fasttext.wasm.js/common'
 
 interface Values {
   input: string

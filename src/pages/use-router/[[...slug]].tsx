@@ -1,6 +1,5 @@
 import { callRouterPush } from '@/components/router-navigation/global-handler'
 import { useRouter } from 'next/router'
-import { memo, useRef, useState } from 'react'
 
 import type { GetServerSidePropsContext } from 'next'
 import type { NextRouter } from 'next/router'

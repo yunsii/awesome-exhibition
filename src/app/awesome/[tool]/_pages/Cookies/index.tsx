@@ -14,10 +14,13 @@ import {
   Switch,
 } from 'antd'
 import * as cookie from 'cookie'
-import React, { useRef, useState } from 'react'
 
-import type { InputRef } from 'antd'
-import type { TupleToUnion } from 'type-fest'
+import type {
+  InputRef,
+} from 'antd'
+import type {
+  TupleToUnion,
+} from 'type-fest'
 
 import { COOKIE_PREFIX, PRESERVED_PREFIXES } from './constants'
 
