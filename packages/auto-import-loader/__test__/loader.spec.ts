@@ -41,16 +41,18 @@ console.log(foo)`)
     const options = { imports: [{ name: 'useState', from: 'react' }] }
     const src = `function Comp(){ const [s, setS] = useState(0); return <div>{s}</div> }`
     const { code } = await runLoader(src, options, '/test/file.jsx')
-    expect(code).toContain("import { useState } from 'react'")
-    expect(code).toContain('useState(0)')
+    expect(code).toBe(`
+import { useState } from 'react';
+function Comp(){ const [s, setS] = useState(0); return <div>{s}</div> }`)
   })
 
   it('handles TSX files', async () => {
     const options = { imports: [{ name: 'useState', from: 'react' }] }
     const src = `function Comp(): JSX.Element { const [s, setS] = useState(0); return <div>{s}</div> }`
     const { code } = await runLoader(src, options, '/test/file.tsx')
-    expect(code).toContain("import { useState } from 'react'")
-    expect(code).toContain('useState(0)')
+    expect(code).toBe(`
+import { useState } from 'react';
+function Comp(): JSX.Element { const [s, setS] = useState(0); return <div>{s}</div> }`)
   })
 
   it('injects default import for used identifier', async () => {
@@ -89,7 +91,6 @@ const count: Ref<number> = ref(0)`)
     const options = { imports: [{ name: 'ref', from: 'vue' }] }
     const src = `const count = 0`
     const { code } = await runLoader(src, options)
-    expect(code).not.toContain("import { ref } from 'vue'")
     expect(code).toBe('const count = 0')
   })
 
@@ -97,10 +98,10 @@ const count: Ref<number> = ref(0)`)
     const options = { imports: [{ name: 'Button', from: 'antd' }, { name: 'useState', from: 'react' }] }
     const src = `function App() { const [count, setCount] = useState(0); return <Button onClick={() => setCount(count + 1)}>{count}</Button> }`
     const { code } = await runLoader(src, options, '/test/file.tsx')
-    expect(code).toContain("import { Button } from 'antd'")
-    expect(code).toContain("import { useState } from 'react'")
-    expect(code).toContain('useState(0)')
-    expect(code).toContain('Button')
+    expect(code).toBe(`
+import { useState } from 'react';
+import { Button } from 'antd';
+function App() { const [count, setCount] = useState(0); return <Button onClick={() => setCount(count + 1)}>{count}</Button> }`)
   })
 
   it('returns original source when no changes', async () => {
@@ -114,10 +115,11 @@ const count: Ref<number> = ref(0)`)
     const options = { imports: [{ name: 'useState', from: 'react' }] }
     const src = `function Comp() { const [s, setS] = useState(0); return <div>{s}</div> }`
     const { code, map } = await runLoader(src, options, '/test/file.jsx')
-    expect(code).toContain("import { useState } from 'react'")
-    expect(code).toContain('<div>{s}</div>') // original JSX preserved
+    expect(code).toBe(`
+import { useState } from 'react';
+function Comp() { const [s, setS] = useState(0); return <div>{s}</div> }`)
     expect(map).toBeDefined()
-    expect(map.sources).toContain('/test/file.jsx') // sourcemap points to original file
+    expect(map.sources).toEqual(['/test/file.jsx']) // sourcemap points to original file
   })
 
   it('replaces imports block correctly with comments preserved', async () => {
@@ -145,16 +147,48 @@ import 'a'
 import 'b'
 /** foo */
 import 'c'
+
 function App() { const [s] = useState(0); useEffect(() => {}, []); return <div>{s}</div> }`
     const { code } = await runLoader(src, options, '/test/file.tsx')
     expect(code).toBe(`'use client'
-import "a";
+import 'a'
 // bar
-import "b";
+import 'b'
 /** foo */
-import "c";
+import 'c'
+
 
 import { useState, useEffect } from 'react';
 function App() { const [s] = useState(0); useEffect(() => {}, []); return <div>{s}</div> }`)
+  })
+
+  it('handles multiline import statements', async () => {
+    const options = { imports: [{ name: 'ref', from: 'vue' }] }
+    const src = `import {
+  Button
+} from './button'
+const app = ref(0)`
+    const { code } = await runLoader(src, options)
+    expect(code).toBe(`import {
+  Button
+} from './button'
+
+import { ref } from 'vue';
+const app = ref(0)`)
+  })
+
+  it('handles multiline import statements in JSX files', async () => {
+    const options = { imports: [{ name: 'useState', from: 'react' }] }
+    const src = `import {
+  Button
+} from './button'
+function App() { const [count, setCount] = useState(0); return <Button>{count}</Button> }`
+    const { code } = await runLoader(src, options, '/test/file.jsx')
+    expect(code).toBe(`import {
+  Button
+} from './button'
+
+import { useState } from 'react';
+function App() { const [count, setCount] = useState(0); return <Button>{count}</Button> }`)
   })
 })

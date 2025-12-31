@@ -24,6 +24,7 @@ export default async function loader(this: LoaderContext<LoaderOptions>, source:
       imports: await flattenImports(options.imports || []),
       dirs: options.dirs || [],
       presets: options.presets || [],
+      // 考虑到 'use client' 的情况，默认开启 injectAtEnd
       injectAtEnd: true,
     })
 

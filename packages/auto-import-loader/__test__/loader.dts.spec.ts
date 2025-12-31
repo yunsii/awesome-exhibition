@@ -27,7 +27,8 @@ function runLoaderWithEmit(source: string, options = {}) {
 describe('auto-import-loader d.ts emission', () => {
   it('emits d.ts when configured', async () => {
     const { files, code } = await runLoaderWithEmit('const x = ref(0)', { imports: [{ name: 'ref', from: 'vue' }], dts: true })
-    expect(code).toContain("import { ref } from 'vue'")
-    expect(files['auto-imports.d.ts']).toContain("declare global")
+    expect(code).toBe(`import { ref } from 'vue';
+const x = ref(0)`)
+    expect(files['auto-imports.d.ts']).toEqual(expect.stringContaining("declare global"))
   })
 })
