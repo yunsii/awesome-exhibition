@@ -1,5 +1,11 @@
 # auto-import-loader
 
+## 0.0.3
+
+### Patch Changes
+
+- 🐛 fix: use consola.create instead of consola.withDefaults
+
 ## 0.0.2
 
 ### Patch Changes
