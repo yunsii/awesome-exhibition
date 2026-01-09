@@ -54,7 +54,7 @@
     "@next/eslint-plugin-next": "15.3.3",
     "@prettier/plugin-xml": "^3.4.1",
     "@tailwindcss/postcss": "^4.1.8",
-    "@types/node": "20.6.1",
+    "@types/node": "^20.19.0",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "auto-import-x-loader": "workspace:*",
