@@ -52,6 +52,10 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
                     label: <Link href='/konva'>Konva</Link>,
                   },
                   {
+                    key: '/zustand',
+                    label: <Link href='/zustand'>Zustand</Link>,
+                  },
+                  {
                     key: '/awesome-tools',
                     label: 'Awesome Tools',
                     children: Object.keys(AwesomeTool).map((item) => {
